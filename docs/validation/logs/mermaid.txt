@@ -1,0 +1,4 @@
+Chrome exit=0
+SVG elements=2
+data-chart0="rendered"
+data-chart1="rendered"

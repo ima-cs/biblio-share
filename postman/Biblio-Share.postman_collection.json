@@ -1,0 +1,2053 @@
+{
+  "info": {
+    "name": "Biblio-Share",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Executer V1 a V6 dans l ordre sur la pile demarree. Le sous-dossier Pannes manuelles exige l arret du service indique et se lance separement. Redemarrer les services apres chaque panne. Pour les pannes, definir outage=catalogue ou outage=adherents puis executer le sous-dossier apres V1 a V5."
+  },
+  "item": [
+    {
+      "name": "V1 — Catalogue et adhérents",
+      "item": [
+        {
+          "name": "Créer livre",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/books",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \"Les Fleurs du mal\", \"auteur\": \"Charles Baudelaire\", \"isbn\": \"isbn-{{runId}}\", \"categorie\": \"Poésie\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.collectionVariables.set('runId', pm.variables.replaceIn('{{$guid}}'));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('bookId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lister livre",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/books"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lire livre",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/books/{{bookId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Modifier livre",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/books/{{bookId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \"Les Fleurs du mal 2\", \"auteur\": \"Charles Baudelaire\", \"isbn\": \"isbn-{{runId}}\", \"categorie\": \"Poésie\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Modification persistée', () => pm.expect(pm.response.json().titre === \"Les Fleurs du mal 2\").to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Rejeter le corps incomplet livre",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/books",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Rechercher un identifiant inexistant livre",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/books/99999999"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Créer exemplaire",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/copies",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"bookId\": \"{{bookId}}\", \"codeExemplaire\": \"EX-{{runId}}\", \"etat\": \"BON\", \"disponible\": true}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('copyId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lister exemplaire",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/copies"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lire exemplaire",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/copies/{{copyId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Modifier exemplaire",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/copies/{{copyId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"bookId\": \"{{bookId}}\", \"codeExemplaire\": \"EX-{{runId}} 2\", \"etat\": \"BON\", \"disponible\": true}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Modification persistée', () => pm.expect(pm.response.json().codeExemplaire === \"EX-\" + pm.collectionVariables.get(\"runId\") + \" 2\").to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Rejeter le corps incomplet exemplaire",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/copies",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Rechercher un identifiant inexistant exemplaire",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/copies/99999999"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Créer adhérent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{adherents}}/members",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nom\": \"Salma\", \"email\": \"salma+{{runId}}@example.test\", \"type\": \"ETUDIANT\", \"suspendu\": false}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('memberId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lister adhérent",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{adherents}}/members"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lire adhérent",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{adherents}}/members/{{memberId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Modifier adhérent",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{adherents}}/members/{{memberId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nom\": \"Salma 2\", \"email\": \"salma+{{runId}}@example.test\", \"type\": \"ETUDIANT\", \"suspendu\": false}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Modification persistée', () => pm.expect(pm.response.json().nom === \"Salma 2\").to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Rejeter le corps incomplet adhérent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{adherents}}/members",
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Rechercher un identifiant inexistant adhérent",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{adherents}}/members/99999999"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Créer une ressource à supprimer livre",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/books",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \"Les Fleurs du mal\", \"auteur\": \"Charles Baudelaire\", \"isbn\": \"isbn-{{runId}}-delete\", \"categorie\": \"Poésie\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('deleteId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Supprimer livre",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{catalogue}}/books/{{deleteId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 204', () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Vérifier la suppression livre",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/books/{{deleteId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Créer une ressource à supprimer exemplaire",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/copies",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"bookId\": \"{{bookId}}\", \"codeExemplaire\": \"EX-{{runId}}-delete\", \"etat\": \"BON\", \"disponible\": true}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('deleteId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Supprimer exemplaire",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{catalogue}}/copies/{{deleteId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 204', () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Vérifier la suppression exemplaire",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/copies/{{deleteId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Créer une ressource à supprimer adhérent",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{adherents}}/members",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nom\": \"Salma\", \"email\": \"salma+{{runId}}-delete@example.test\", \"type\": \"ETUDIANT\", \"suspendu\": false}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('deleteId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Supprimer adhérent",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": "{{adherents}}/members/{{deleteId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 204', () => pm.response.to.have.status(204));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Vérifier la suppression adhérent",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{adherents}}/members/{{deleteId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser un titre vide",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/books",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"titre\": \" \", \"auteur\": \"Audit\", \"isbn\": \"audit\", \"categorie\": \"Test\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser un email mal forme",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{adherents}}/members",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nom\": \"Audit\", \"email\": \"invalide\", \"type\": \"ETUDIANT\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser un bookId negatif",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/copies",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"bookId\": -1, \"codeExemplaire\": \"audit\", \"etat\": \"BON\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser un livre inexistant pour un exemplaire",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/copies",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"bookId\": 99999999, \"codeExemplaire\": \"audit\", \"etat\": \"BON\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "V2 — Eureka et Gateway",
+      "item": [
+        {
+          "name": "Vérifier les instances UP",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{eureka}}/eureka/apps"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Toutes les instances attendues sont UP', () => {",
+                  "  const apps = pm.response.json().applications.application;",
+                  "  ['SERVICE-CATALOGUE','SERVICE-ADHERENTS','SERVICE-PRET','SERVICE-NOTIFICATION','GATEWAY-SERVICE','CONFIG-SERVER'].forEach(name => {",
+                  "    const app = apps.find(app => app.name === name);",
+                  "    pm.expect(app, name).to.exist;",
+                  "    pm.expect(app.instance.some(instance => instance.status === 'UP'), name).to.equal(true);",
+                  "  });",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Router vers service-catalogue",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{gateway}}/service-catalogue/books"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Liste JSON', () => pm.expect(Array.isArray(pm.response.json())).to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Router vers service-adherents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{gateway}}/service-adherents/members"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Liste JSON', () => pm.expect(Array.isArray(pm.response.json())).to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Router vers service-pret",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{gateway}}/service-pret/loans"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Liste JSON', () => pm.expect(Array.isArray(pm.response.json())).to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Comparer books direct et Gateway",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/books"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const direct = pm.response.json(); pm.sendRequest(pm.variables.replaceIn('{{gateway}}/service-catalogue/books'), (err, res) => { pm.test('Gateway identique', () => { pm.expect(err).to.equal(null); pm.expect(res.code).to.equal(200); pm.expect(res.json()).to.deep.equal(direct); }); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Comparer copies direct et Gateway",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/copies"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const direct = pm.response.json(); pm.sendRequest(pm.variables.replaceIn('{{gateway}}/service-catalogue/copies'), (err, res) => { pm.test('Gateway identique', () => { pm.expect(err).to.equal(null); pm.expect(res.code).to.equal(200); pm.expect(res.json()).to.deep.equal(direct); }); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Comparer members direct et Gateway",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{adherents}}/members"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const direct = pm.response.json(); pm.sendRequest(pm.variables.replaceIn('{{gateway}}/service-adherents/members'), (err, res) => { pm.test('Gateway identique', () => { pm.expect(err).to.equal(null); pm.expect(res.code).to.equal(200); pm.expect(res.json()).to.deep.equal(direct); }); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Comparer loans direct et Gateway",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{pret}}/loans"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const direct = pm.response.json(); pm.sendRequest(pm.variables.replaceIn('{{gateway}}/service-pret/loans'), (err, res) => { pm.test('Gateway identique', () => { pm.expect(err).to.equal(null); pm.expect(res.code).to.equal(200); pm.expect(res.json()).to.deep.equal(direct); }); });"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Notification interne",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{gateway}}/service-notification/actuator/health"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "V3 — Config Server",
+      "item": [
+        {
+          "name": "Configuration service-catalogue",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{config}}/service-catalogue/default"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Propriétés globales et spécifiques', () => pm.expect(pm.response.json().propertySources.some(s => s.name.includes('application.properties')) && pm.response.json().propertySources.some(s => s.name.includes('service-catalogue.properties'))).to.equal(true));",
+                  "pm.test(\"Version Git et port centralise\", () => pm.expect(!!pm.response.json().version && pm.response.json().propertySources[0].source['server.port'] === '8081').to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Configuration service-adherents",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{config}}/service-adherents/default"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Propriétés globales et spécifiques', () => pm.expect(pm.response.json().propertySources.some(s => s.name.includes('application.properties')) && pm.response.json().propertySources.some(s => s.name.includes('service-adherents.properties'))).to.equal(true));",
+                  "pm.test(\"Version Git et port centralise\", () => pm.expect(!!pm.response.json().version && pm.response.json().propertySources[0].source['server.port'] === '8082').to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Configuration service-pret",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{config}}/service-pret/default"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Propriétés globales et spécifiques', () => pm.expect(pm.response.json().propertySources.some(s => s.name.includes('application.properties')) && pm.response.json().propertySources.some(s => s.name.includes('service-pret.properties'))).to.equal(true));",
+                  "pm.test(\"Version Git et port centralise\", () => pm.expect(!!pm.response.json().version && pm.response.json().propertySources[0].source['server.port'] === '8083').to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Configuration service-notification",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{config}}/service-notification/default"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Propriétés globales et spécifiques', () => pm.expect(pm.response.json().propertySources.some(s => s.name.includes('application.properties')) && pm.response.json().propertySources.some(s => s.name.includes('service-notification.properties'))).to.equal(true));",
+                  "pm.test(\"Version Git et port centralise\", () => pm.expect(!!pm.response.json().version && pm.response.json().propertySources[0].source['server.port'] === '8084').to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Configuration gateway-service",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{config}}/gateway-service/default"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Propriétés globales et spécifiques', () => pm.expect(pm.response.json().propertySources.some(s => s.name.includes('application.properties')) && pm.response.json().propertySources.some(s => s.name.includes('gateway-service.properties'))).to.equal(true));",
+                  "pm.test(\"Version Git et port centralise\", () => pm.expect(!!pm.response.json().version && pm.response.json().propertySources[0].source['server.port'] === '8080').to.equal(true));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "V4 — Emprunts et OpenFeign",
+      "item": [
+        {
+          "name": "Refuser une reservation pour un ouvrage inconnu",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{adherents}}/reservations",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"bookId\": 99999999, \"memberId\": \"{{memberId}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser un adherent inexistant",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{$guid}}"
+              }
+            ],
+            "url": "{{pret}}/loans",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"copyId\": \"{{copyId}}\", \"memberId\": 99999999, \"dateRetourPrevue\": \"2099-01-01\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Creer un adherent suspendu",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{adherents}}/members",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"nom\": \"Audit\", \"email\": \"suspendu+{{runId}}@example.test\", \"type\": \"ETUDIANT\", \"suspendu\": true}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "pm.collectionVariables.set('suspendedId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser un adherent suspendu",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{$guid}}"
+              }
+            ],
+            "url": "{{pret}}/loans",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"copyId\": \"{{copyId}}\", \"memberId\": \"{{suspendedId}}\", \"dateRetourPrevue\": \"2099-01-01\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 409', () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Créer un emprunt",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{loanKey}}"
+              }
+            ],
+            "url": "{{pret}}/loans",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"copyId\": \"{{copyId}}\", \"memberId\": \"{{memberId}}\", \"dateRetourPrevue\": \"{{dueDate}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "prerequest",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const day = new Date(); day.setDate(day.getDate()+14); pm.collectionVariables.set('dueDate',day.toISOString().slice(0,10));",
+                  "pm.collectionVariables.set('loanKey',pm.variables.replaceIn('{{$guid}}'));"
+                ]
+              }
+            },
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('loanId', pm.response.json().id);",
+                  "pm.test('Emprunt en cours', () => pm.expect(pm.response.json().statut === 'EN_COURS').to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Consulter les données enrichies",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{pret}}/loans/{{loanId}}/details"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Livre, exemplaire, adhérent et amendes', () => pm.expect(!!(pm.response.json().copy && pm.response.json().book && pm.response.json().member && Array.isArray(pm.response.json().fines))).to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser un second emprunt du même exemplaire",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{$guid}}"
+              }
+            ],
+            "url": "{{pret}}/loans",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"copyId\": \"{{copyId}}\", \"memberId\": \"{{memberId}}\", \"dateRetourPrevue\": \"{{dueDate}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 409', () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser un exemplaire inexistant",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{$guid}}"
+              }
+            ],
+            "url": "{{pret}}/loans",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"copyId\": 99999999, \"memberId\": \"{{memberId}}\", \"dateRetourPrevue\": \"{{dueDate}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 404', () => pm.response.to.have.status(404));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser une création sans clé",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{pret}}/loans",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"copyId\": \"{{copyId}}\", \"memberId\": \"{{memberId}}\", \"dateRetourPrevue\": \"{{dueDate}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 400', () => pm.response.to.have.status(400));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Consulter un emprunt simple",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{pret}}/loans/{{loanId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test(\"Emprunt local\", () => pm.expect(pm.response.json().statut === 'EN_COURS' && !('copy' in pm.response.json())).to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser la modification d un exemplaire attribue",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{catalogue}}/copies/{{copyId}}",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"bookId\": \"{{bookId}}\", \"codeExemplaire\": \"EX-{{runId}} 2\", \"etat\": \"BON\", \"disponible\": true}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 409', () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Exemplaire attribue",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/copies/{{copyId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test(\"Indisponible\", () => pm.expect(pm.response.json().disponible === false).to.equal(true));"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "V5 — Notifications",
+      "item": [
+        {
+          "name": "Réserver pour le prochain retour",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": "{{adherents}}/reservations",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"memberId\": \"{{memberId}}\", \"bookId\": \"{{bookId}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 201', () => pm.response.to.have.status(201));",
+                  "if (pm.response.code === 201) pm.collectionVariables.set('reservationId', pm.response.json().id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Retourner et libérer l’exemplaire",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": "{{pret}}/loans/{{loanId}}/return"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Retour enregistré', () => pm.expect(pm.response.json().statut === 'RETOURNE').to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Vérifier que la réservation a été traitée",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{adherents}}/reservations/{{reservationId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Réservation notifiée', () => pm.expect(pm.response.json().statut === 'NOTIFIEE').to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Vérifier la disponibilité après retour",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{catalogue}}/copies/{{copyId}}"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Exemplaire disponible', () => pm.expect(pm.response.json().disponible === true).to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Détecter les emprunts échus",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": "{{pret}}/loans/detect-overdue"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Nombre de retards', () => pm.expect(typeof pm.response.json().retardsDetectes === 'number').to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Consulter les amendes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{pret}}/fines"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Lire les messages Mailpit",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{mailpit}}/api/v1/messages"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "const url = pm.variables.replaceIn('{{mailpit}}/api/v1/messages');",
+                  "const address = 'salma+' + pm.collectionVariables.get('runId') + '@example.test';",
+                  "function verifyMail(response, remaining) {",
+                  "  const found = response && response.code === 200 && response.json().messages.some(m =>",
+                  "    m.Subject === 'Ouvrage reserve disponible' && m.To.some(t => t.Address === address));",
+                  "  if (!found && remaining > 0) {",
+                  "    return setTimeout(() => pm.sendRequest(url, (error, next) => verifyMail(next, remaining - 1)), 500);",
+                  "  }",
+                  "  pm.test('Courriel au destinataire du scenario', () => pm.expect(found).to.equal(true));",
+                  "}",
+                  "verifyMail(pm.response, 12);"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "V6 — Résilience et idempotence",
+      "item": [
+        {
+          "name": "Rejouer la création",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{loanKey}}"
+              }
+            ],
+            "url": "{{pret}}/loans",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"copyId\": \"{{copyId}}\", \"memberId\": \"{{memberId}}\", \"dateRetourPrevue\": \"{{dueDate}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Même identifiant', () => pm.expect(String(pm.response.json().id) === String(pm.collectionVariables.get('loanId'))).to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Compter les emprunts créés pour la clé",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{pret}}/loans"
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                  "pm.test('Une ligne pour la clé', () => pm.expect(pm.response.json().filter(l => l.idempotencyKey === pm.collectionVariables.get('loanKey')).length === 1).to.equal(true));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Refuser la clé avec une autre demande",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Idempotency-Key",
+                "value": "{{loanKey}}"
+              }
+            ],
+            "url": "{{pret}}/loans",
+            "body": {
+              "mode": "raw",
+              "raw": "{\"copyId\": \"{{copyId}}\", \"memberId\": 99999999, \"dateRetourPrevue\": \"{{dueDate}}\"}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('HTTP 409', () => pm.response.to.have.status(409));"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Pannes manuelles (hors parcours nominal)",
+          "item": [
+            {
+              "name": "Catalogue arrêté — consulter en mode dégradé",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{pret}}/loans/{{loanId}}/details",
+                "description": "Arreter uniquement le catalogue; preparer V1 et V4 avant cette requete."
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('outage') !== 'catalogue') pm.execution.skipRequest();"
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                      "pm.test('Exemplaire absent et emprunt présent', () => pm.expect(pm.response.json().copy == null && !!pm.response.json().loan && pm.response.json().donneesManquantes.includes('copy')).to.equal(true));"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Catalogue arrêté — refuser la création",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Idempotency-Key",
+                    "value": "{{$guid}}"
+                  }
+                ],
+                "url": "{{pret}}/loans",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"copyId\": \"{{copyId}}\", \"memberId\": \"{{memberId}}\", \"dateRetourPrevue\": \"{{dueDate}}\"}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "description": "Executer pendant la panne catalogue apres le scenario nominal."
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('outage') !== 'catalogue') pm.execution.skipRequest();"
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('HTTP 503', () => pm.response.to.have.status(503));"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Adherents arrete - consulter en mode degrade",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": "{{pret}}/loans/{{loanId}}/details"
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('outage') !== 'adherents') pm.execution.skipRequest();"
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('HTTP 200', () => pm.response.to.have.status(200));",
+                      "pm.test(\"Adherent absent et catalogue disponible\", () => pm.expect(pm.response.json().member == null && !!pm.response.json().copy && pm.response.json().donneesManquantes.includes('member')).to.equal(true));"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Adherents arrete - refuser la creation",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Idempotency-Key",
+                    "value": "{{$guid}}"
+                  }
+                ],
+                "url": "{{pret}}/loans",
+                "description": "Utiliser un exemplaire disponible, par exemple apres V5.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\"copyId\": \"{{copyId}}\", \"memberId\": \"{{memberId}}\", \"dateRetourPrevue\": \"{{dueDate}}\"}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "event": [
+                {
+                  "listen": "prerequest",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "if (pm.variables.get('outage') !== 'adherents') pm.execution.skipRequest();"
+                    ]
+                  }
+                },
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "pm.test('HTTP 503', () => pm.response.to.have.status(503));"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "catalogue",
+      "value": "http://localhost:8081"
+    },
+    {
+      "key": "adherents",
+      "value": "http://localhost:8082"
+    },
+    {
+      "key": "pret",
+      "value": "http://localhost:8083"
+    },
+    {
+      "key": "gateway",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "eureka",
+      "value": "http://localhost:8761"
+    },
+    {
+      "key": "config",
+      "value": "http://localhost:8888"
+    },
+    {
+      "key": "mailpit",
+      "value": "http://localhost:8025"
+    },
+    {
+      "key": "bookId",
+      "value": ""
+    },
+    {
+      "key": "copyId",
+      "value": ""
+    },
+    {
+      "key": "memberId",
+      "value": ""
+    },
+    {
+      "key": "loanId",
+      "value": ""
+    },
+    {
+      "key": "reservationId",
+      "value": ""
+    },
+    {
+      "key": "loanKey",
+      "value": ""
+    },
+    {
+      "key": "dueDate",
+      "value": ""
+    },
+    {
+      "key": "deleteId",
+      "value": ""
+    },
+    {
+      "key": "runId",
+      "value": ""
+    },
+    {
+      "key": "outage",
+      "value": ""
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if (!pm.collectionVariables.get('runId')) pm.collectionVariables.set('runId', pm.variables.replaceIn('{{$guid}}'));"
+        ]
+      }
+    }
+  ]
+}

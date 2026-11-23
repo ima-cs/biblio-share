@@ -1,0 +1,2694 @@
+{
+  "totals": {
+    "iterations": {
+      "total": 1,
+      "pending": 0,
+      "failed": 0
+    },
+    "items": {
+      "total": 71,
+      "pending": 0,
+      "failed": 0
+    },
+    "scripts": {
+      "total": 144,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequests": {
+      "total": 71,
+      "pending": 0,
+      "failed": 0
+    },
+    "requests": {
+      "total": 71,
+      "pending": 0,
+      "failed": 0
+    },
+    "tests": {
+      "total": 67,
+      "pending": 0,
+      "failed": 0
+    },
+    "assertions": {
+      "total": 99,
+      "pending": 0,
+      "failed": 0
+    },
+    "testScripts": {
+      "total": 67,
+      "pending": 0,
+      "failed": 0
+    },
+    "prerequestScripts": {
+      "total": 77,
+      "pending": 0,
+      "failed": 0
+    }
+  },
+  "executions": [
+    {
+      "name": "Créer livre",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "books"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "titre": "Les Fleurs du mal",
+        "auteur": "Charles Baudelaire",
+        "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28",
+        "categorie": "Poésie"
+      },
+      "status": 201,
+      "responseBody": {
+        "id": 1,
+        "titre": "Les Fleurs du mal",
+        "auteur": "Charles Baudelaire",
+        "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28",
+        "categorie": "Poésie"
+      },
+      "assertions": [
+        "HTTP 201"
+      ]
+    },
+    {
+      "name": "Lister livre",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "books"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "titre": "Les Fleurs du mal",
+          "auteur": "Charles Baudelaire",
+          "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28",
+          "categorie": "Poésie"
+        }
+      ],
+      "assertions": [
+        "HTTP 200"
+      ]
+    },
+    {
+      "name": "Lire livre",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "books",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "titre": "Les Fleurs du mal",
+        "auteur": "Charles Baudelaire",
+        "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28",
+        "categorie": "Poésie"
+      },
+      "assertions": [
+        "HTTP 200"
+      ]
+    },
+    {
+      "name": "Modifier livre",
+      "method": "PUT",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "books",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "titre": "Les Fleurs du mal 2",
+        "auteur": "Charles Baudelaire",
+        "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28",
+        "categorie": "Poésie"
+      },
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "titre": "Les Fleurs du mal 2",
+        "auteur": "Charles Baudelaire",
+        "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28",
+        "categorie": "Poésie"
+      },
+      "assertions": [
+        "HTTP 200",
+        "Modification persistée"
+      ]
+    },
+    {
+      "name": "Rejeter le corps incomplet livre",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "books"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {},
+      "status": 400,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Invalid request content.",
+        "instance": "/books"
+      },
+      "assertions": [
+        "HTTP 400"
+      ]
+    },
+    {
+      "name": "Rechercher un identifiant inexistant livre",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "books",
+          "99999999"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 404,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Not Found",
+        "status": 404,
+        "detail": "Livre introuvable",
+        "instance": "/books/99999999"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Créer exemplaire",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "bookId": "1",
+        "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28",
+        "etat": "BON",
+        "disponible": true
+      },
+      "status": 201,
+      "responseBody": {
+        "id": 1,
+        "bookId": 1,
+        "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28",
+        "etat": "BON",
+        "disponible": true
+      },
+      "assertions": [
+        "HTTP 201"
+      ]
+    },
+    {
+      "name": "Lister exemplaire",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "bookId": 1,
+          "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28",
+          "etat": "BON",
+          "disponible": true
+        }
+      ],
+      "assertions": [
+        "HTTP 200"
+      ]
+    },
+    {
+      "name": "Lire exemplaire",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "bookId": 1,
+        "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28",
+        "etat": "BON",
+        "disponible": true
+      },
+      "assertions": [
+        "HTTP 200"
+      ]
+    },
+    {
+      "name": "Modifier exemplaire",
+      "method": "PUT",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "bookId": "1",
+        "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28 2",
+        "etat": "BON",
+        "disponible": true
+      },
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "bookId": 1,
+        "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28 2",
+        "etat": "BON",
+        "disponible": true
+      },
+      "assertions": [
+        "HTTP 200",
+        "Modification persistée"
+      ]
+    },
+    {
+      "name": "Rejeter le corps incomplet exemplaire",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {},
+      "status": 400,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Invalid request content.",
+        "instance": "/copies"
+      },
+      "assertions": [
+        "HTTP 400"
+      ]
+    },
+    {
+      "name": "Rechercher un identifiant inexistant exemplaire",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies",
+          "99999999"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 404,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Not Found",
+        "status": 404,
+        "detail": "Exemplaire introuvable",
+        "instance": "/copies/99999999"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Créer adhérent",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "nom": "Salma",
+        "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+        "type": "ETUDIANT",
+        "suspendu": false
+      },
+      "status": 201,
+      "responseBody": {
+        "id": 1,
+        "nom": "Salma",
+        "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+        "type": "ETUDIANT",
+        "suspendu": false
+      },
+      "assertions": [
+        "HTTP 201"
+      ]
+    },
+    {
+      "name": "Lister adhérent",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "nom": "Salma",
+          "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+          "type": "ETUDIANT",
+          "suspendu": false
+        }
+      ],
+      "assertions": [
+        "HTTP 200"
+      ]
+    },
+    {
+      "name": "Lire adhérent",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "nom": "Salma",
+        "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+        "type": "ETUDIANT",
+        "suspendu": false
+      },
+      "assertions": [
+        "HTTP 200"
+      ]
+    },
+    {
+      "name": "Modifier adhérent",
+      "method": "PUT",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "nom": "Salma 2",
+        "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+        "type": "ETUDIANT",
+        "suspendu": false
+      },
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "nom": "Salma 2",
+        "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+        "type": "ETUDIANT",
+        "suspendu": false
+      },
+      "assertions": [
+        "HTTP 200",
+        "Modification persistée"
+      ]
+    },
+    {
+      "name": "Rejeter le corps incomplet adhérent",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {},
+      "status": 400,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Invalid request content.",
+        "instance": "/members"
+      },
+      "assertions": [
+        "HTTP 400"
+      ]
+    },
+    {
+      "name": "Rechercher un identifiant inexistant adhérent",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members",
+          "99999999"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 404,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Not Found",
+        "status": 404,
+        "detail": "Adherent introuvable",
+        "instance": "/members/99999999"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Créer une ressource à supprimer livre",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "books"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "titre": "Les Fleurs du mal",
+        "auteur": "Charles Baudelaire",
+        "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28-delete",
+        "categorie": "Poésie"
+      },
+      "status": 201,
+      "responseBody": {
+        "id": 2,
+        "titre": "Les Fleurs du mal",
+        "auteur": "Charles Baudelaire",
+        "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28-delete",
+        "categorie": "Poésie"
+      },
+      "assertions": [
+        "HTTP 201"
+      ]
+    },
+    {
+      "name": "Supprimer livre",
+      "method": "DELETE",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "books",
+          "2"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 204,
+      "responseBody": null,
+      "assertions": [
+        "HTTP 204"
+      ]
+    },
+    {
+      "name": "Vérifier la suppression livre",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "books",
+          "2"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 404,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Not Found",
+        "status": 404,
+        "detail": "Livre introuvable",
+        "instance": "/books/2"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Créer une ressource à supprimer exemplaire",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "bookId": "1",
+        "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28-delete",
+        "etat": "BON",
+        "disponible": true
+      },
+      "status": 201,
+      "responseBody": {
+        "id": 2,
+        "bookId": 1,
+        "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28-delete",
+        "etat": "BON",
+        "disponible": true
+      },
+      "assertions": [
+        "HTTP 201"
+      ]
+    },
+    {
+      "name": "Supprimer exemplaire",
+      "method": "DELETE",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies",
+          "2"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 204,
+      "responseBody": null,
+      "assertions": [
+        "HTTP 204"
+      ]
+    },
+    {
+      "name": "Vérifier la suppression exemplaire",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies",
+          "2"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 404,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Not Found",
+        "status": 404,
+        "detail": "Exemplaire introuvable",
+        "instance": "/copies/2"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Créer une ressource à supprimer adhérent",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "nom": "Salma",
+        "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28-delete@example.test",
+        "type": "ETUDIANT",
+        "suspendu": false
+      },
+      "status": 201,
+      "responseBody": {
+        "id": 2,
+        "nom": "Salma",
+        "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28-delete@example.test",
+        "type": "ETUDIANT",
+        "suspendu": false
+      },
+      "assertions": [
+        "HTTP 201"
+      ]
+    },
+    {
+      "name": "Supprimer adhérent",
+      "method": "DELETE",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members",
+          "2"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 204,
+      "responseBody": null,
+      "assertions": [
+        "HTTP 204"
+      ]
+    },
+    {
+      "name": "Vérifier la suppression adhérent",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members",
+          "2"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 404,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Not Found",
+        "status": 404,
+        "detail": "Adherent introuvable",
+        "instance": "/members/2"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Refuser un titre vide",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "books"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "titre": " ",
+        "auteur": "Audit",
+        "isbn": "audit",
+        "categorie": "Test"
+      },
+      "status": 400,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Invalid request content.",
+        "instance": "/books"
+      },
+      "assertions": [
+        "HTTP 400"
+      ]
+    },
+    {
+      "name": "Refuser un email mal forme",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "nom": "Audit",
+        "email": "invalide",
+        "type": "ETUDIANT"
+      },
+      "status": 400,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Invalid request content.",
+        "instance": "/members"
+      },
+      "assertions": [
+        "HTTP 400"
+      ]
+    },
+    {
+      "name": "Refuser un bookId negatif",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "bookId": -1,
+        "codeExemplaire": "audit",
+        "etat": "BON"
+      },
+      "status": 400,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Invalid request content.",
+        "instance": "/copies"
+      },
+      "assertions": [
+        "HTTP 400"
+      ]
+    },
+    {
+      "name": "Refuser un livre inexistant pour un exemplaire",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "bookId": 99999999,
+        "codeExemplaire": "audit",
+        "etat": "BON"
+      },
+      "status": 404,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Not Found",
+        "status": 404,
+        "detail": "Livre introuvable",
+        "instance": "/copies"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Vérifier les instances UP",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8761",
+        "path": [
+          "eureka",
+          "apps"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "applications": {
+          "versions__delta": "1",
+          "apps__hashcode": "UP_6_",
+          "application": [
+            {
+              "name": "SERVICE-CATALOGUE",
+              "instance": [
+                {
+                  "instanceId": "MSI:service-catalogue:8181",
+                  "hostName": "MSI",
+                  "app": "SERVICE-CATALOGUE",
+                  "ipAddr": "192.168.56.1",
+                  "status": "UP",
+                  "overriddenStatus": "UNKNOWN",
+                  "port": {
+                    "$": 8181,
+                    "@enabled": "true"
+                  },
+                  "securePort": {
+                    "$": 443,
+                    "@enabled": "false"
+                  },
+                  "countryId": 1,
+                  "dataCenterInfo": {
+                    "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+                    "name": "MyOwn"
+                  },
+                  "leaseInfo": {
+                    "renewalIntervalInSecs": 30,
+                    "durationInSecs": 90,
+                    "registrationTimestamp": 1795429403259,
+                    "lastRenewalTimestamp": 1795429523164,
+                    "evictionTimestamp": 0,
+                    "serviceUpTimestamp": 1795429402748
+                  },
+                  "metadata": {
+                    "management.port": "8181"
+                  },
+                  "homePageUrl": "http://MSI:8181/",
+                  "statusPageUrl": "http://MSI:8181/actuator/info",
+                  "healthCheckUrl": "http://MSI:8181/actuator/health",
+                  "vipAddress": "service-catalogue",
+                  "secureVipAddress": "service-catalogue",
+                  "isCoordinatingDiscoveryServer": "false",
+                  "lastUpdatedTimestamp": "1795429403259",
+                  "lastDirtyTimestamp": "1795429402637",
+                  "actionType": "ADDED"
+                }
+              ]
+            },
+            {
+              "name": "CONFIG-SERVER",
+              "instance": [
+                {
+                  "instanceId": "MSI:config-server:8888",
+                  "hostName": "MSI",
+                  "app": "CONFIG-SERVER",
+                  "ipAddr": "192.168.56.1",
+                  "status": "UP",
+                  "overriddenStatus": "UNKNOWN",
+                  "port": {
+                    "$": 8888,
+                    "@enabled": "true"
+                  },
+                  "securePort": {
+                    "$": 443,
+                    "@enabled": "false"
+                  },
+                  "countryId": 1,
+                  "dataCenterInfo": {
+                    "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+                    "name": "MyOwn"
+                  },
+                  "leaseInfo": {
+                    "renewalIntervalInSecs": 30,
+                    "durationInSecs": 90,
+                    "registrationTimestamp": 1795429372393,
+                    "lastRenewalTimestamp": 1795429521922,
+                    "evictionTimestamp": 0,
+                    "serviceUpTimestamp": 1795429371554
+                  },
+                  "metadata": {
+                    "management.port": "8888"
+                  },
+                  "homePageUrl": "http://MSI:8888/",
+                  "statusPageUrl": "http://MSI:8888/actuator/info",
+                  "healthCheckUrl": "http://MSI:8888/actuator/health",
+                  "vipAddress": "config-server",
+                  "secureVipAddress": "config-server",
+                  "isCoordinatingDiscoveryServer": "false",
+                  "lastUpdatedTimestamp": "1795429372393",
+                  "lastDirtyTimestamp": "1795429371289",
+                  "actionType": "ADDED"
+                }
+              ]
+            },
+            {
+              "name": "SERVICE-ADHERENTS",
+              "instance": [
+                {
+                  "instanceId": "MSI:service-adherents:8082",
+                  "hostName": "MSI",
+                  "app": "SERVICE-ADHERENTS",
+                  "ipAddr": "192.168.56.1",
+                  "status": "UP",
+                  "overriddenStatus": "UNKNOWN",
+                  "port": {
+                    "$": 8082,
+                    "@enabled": "true"
+                  },
+                  "securePort": {
+                    "$": 443,
+                    "@enabled": "false"
+                  },
+                  "countryId": 1,
+                  "dataCenterInfo": {
+                    "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+                    "name": "MyOwn"
+                  },
+                  "leaseInfo": {
+                    "renewalIntervalInSecs": 30,
+                    "durationInSecs": 90,
+                    "registrationTimestamp": 1795429401284,
+                    "lastRenewalTimestamp": 1795429521159,
+                    "evictionTimestamp": 0,
+                    "serviceUpTimestamp": 1795429400763
+                  },
+                  "metadata": {
+                    "management.port": "8082"
+                  },
+                  "homePageUrl": "http://MSI:8082/",
+                  "statusPageUrl": "http://MSI:8082/actuator/info",
+                  "healthCheckUrl": "http://MSI:8082/actuator/health",
+                  "vipAddress": "service-adherents",
+                  "secureVipAddress": "service-adherents",
+                  "isCoordinatingDiscoveryServer": "false",
+                  "lastUpdatedTimestamp": "1795429401284",
+                  "lastDirtyTimestamp": "1795429400640",
+                  "actionType": "ADDED"
+                }
+              ]
+            },
+            {
+              "name": "GATEWAY-SERVICE",
+              "instance": [
+                {
+                  "instanceId": "MSI:gateway-service:8080",
+                  "hostName": "MSI",
+                  "app": "GATEWAY-SERVICE",
+                  "ipAddr": "192.168.56.1",
+                  "status": "UP",
+                  "overriddenStatus": "UNKNOWN",
+                  "port": {
+                    "$": 8080,
+                    "@enabled": "true"
+                  },
+                  "securePort": {
+                    "$": 443,
+                    "@enabled": "false"
+                  },
+                  "countryId": 1,
+                  "dataCenterInfo": {
+                    "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+                    "name": "MyOwn"
+                  },
+                  "leaseInfo": {
+                    "renewalIntervalInSecs": 30,
+                    "durationInSecs": 90,
+                    "registrationTimestamp": 1795429418971,
+                    "lastRenewalTimestamp": 1795429418971,
+                    "evictionTimestamp": 0,
+                    "serviceUpTimestamp": 1795429418457
+                  },
+                  "metadata": {
+                    "management.port": "8080"
+                  },
+                  "homePageUrl": "http://MSI:8080/",
+                  "statusPageUrl": "http://MSI:8080/actuator/info",
+                  "healthCheckUrl": "http://MSI:8080/actuator/health",
+                  "vipAddress": "gateway-service",
+                  "secureVipAddress": "gateway-service",
+                  "isCoordinatingDiscoveryServer": "false",
+                  "lastUpdatedTimestamp": "1795429418972",
+                  "lastDirtyTimestamp": "1795429418374",
+                  "actionType": "ADDED"
+                }
+              ]
+            },
+            {
+              "name": "SERVICE-PRET",
+              "instance": [
+                {
+                  "instanceId": "MSI:service-pret:8083",
+                  "hostName": "MSI",
+                  "app": "SERVICE-PRET",
+                  "ipAddr": "192.168.56.1",
+                  "status": "UP",
+                  "overriddenStatus": "UNKNOWN",
+                  "port": {
+                    "$": 8083,
+                    "@enabled": "true"
+                  },
+                  "securePort": {
+                    "$": 443,
+                    "@enabled": "false"
+                  },
+                  "countryId": 1,
+                  "dataCenterInfo": {
+                    "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+                    "name": "MyOwn"
+                  },
+                  "leaseInfo": {
+                    "renewalIntervalInSecs": 30,
+                    "durationInSecs": 90,
+                    "registrationTimestamp": 1795429406666,
+                    "lastRenewalTimestamp": 1795429526528,
+                    "evictionTimestamp": 0,
+                    "serviceUpTimestamp": 1795429406145
+                  },
+                  "metadata": {
+                    "management.port": "8083"
+                  },
+                  "homePageUrl": "http://MSI:8083/",
+                  "statusPageUrl": "http://MSI:8083/actuator/info",
+                  "healthCheckUrl": "http://MSI:8083/actuator/health",
+                  "vipAddress": "service-pret",
+                  "secureVipAddress": "service-pret",
+                  "isCoordinatingDiscoveryServer": "false",
+                  "lastUpdatedTimestamp": "1795429406666",
+                  "lastDirtyTimestamp": "1795429406016",
+                  "actionType": "ADDED"
+                }
+              ]
+            },
+            {
+              "name": "SERVICE-NOTIFICATION",
+              "instance": [
+                {
+                  "instanceId": "MSI:service-notification:8084",
+                  "hostName": "MSI",
+                  "app": "SERVICE-NOTIFICATION",
+                  "ipAddr": "192.168.56.1",
+                  "status": "UP",
+                  "overriddenStatus": "UNKNOWN",
+                  "port": {
+                    "$": 8084,
+                    "@enabled": "true"
+                  },
+                  "securePort": {
+                    "$": 443,
+                    "@enabled": "false"
+                  },
+                  "countryId": 1,
+                  "dataCenterInfo": {
+                    "@class": "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo",
+                    "name": "MyOwn"
+                  },
+                  "leaseInfo": {
+                    "renewalIntervalInSecs": 30,
+                    "durationInSecs": 90,
+                    "registrationTimestamp": 1795429388305,
+                    "lastRenewalTimestamp": 1795429508112,
+                    "evictionTimestamp": 0,
+                    "serviceUpTimestamp": 1795429387786
+                  },
+                  "metadata": {
+                    "management.port": "8084"
+                  },
+                  "homePageUrl": "http://MSI:8084/",
+                  "statusPageUrl": "http://MSI:8084/actuator/info",
+                  "healthCheckUrl": "http://MSI:8084/actuator/health",
+                  "vipAddress": "service-notification",
+                  "secureVipAddress": "service-notification",
+                  "isCoordinatingDiscoveryServer": "false",
+                  "lastUpdatedTimestamp": "1795429388305",
+                  "lastDirtyTimestamp": "1795429387592",
+                  "actionType": "ADDED"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "assertions": [
+        "HTTP 200",
+        "Toutes les instances attendues sont UP"
+      ]
+    },
+    {
+      "name": "Router vers service-catalogue",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-catalogue",
+          "books"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "titre": "Les Fleurs du mal 2",
+          "auteur": "Charles Baudelaire",
+          "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28",
+          "categorie": "Poésie"
+        }
+      ],
+      "assertions": [
+        "HTTP 200",
+        "Liste JSON"
+      ]
+    },
+    {
+      "name": "Router vers service-adherents",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-adherents",
+          "members"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "nom": "Salma 2",
+          "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+          "type": "ETUDIANT",
+          "suspendu": false
+        }
+      ],
+      "assertions": [
+        "HTTP 200",
+        "Liste JSON"
+      ]
+    },
+    {
+      "name": "Router vers service-pret",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-pret",
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [],
+      "assertions": [
+        "HTTP 200",
+        "Liste JSON"
+      ]
+    },
+    {
+      "name": "Comparer books direct et Gateway",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-catalogue",
+          "books"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "titre": "Les Fleurs du mal 2",
+          "auteur": "Charles Baudelaire",
+          "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28",
+          "categorie": "Poésie"
+        }
+      ],
+      "assertions": [
+        "HTTP 200",
+        "Gateway identique"
+      ]
+    },
+    {
+      "name": "Comparer books direct et Gateway",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-catalogue",
+          "books"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "titre": "Les Fleurs du mal 2",
+          "auteur": "Charles Baudelaire",
+          "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28",
+          "categorie": "Poésie"
+        }
+      ],
+      "assertions": [
+        "HTTP 200",
+        "Gateway identique"
+      ]
+    },
+    {
+      "name": "Comparer copies direct et Gateway",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-catalogue",
+          "copies"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "bookId": 1,
+          "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28 2",
+          "etat": "BON",
+          "disponible": true
+        }
+      ],
+      "assertions": [
+        "HTTP 200",
+        "Gateway identique"
+      ]
+    },
+    {
+      "name": "Comparer copies direct et Gateway",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-catalogue",
+          "copies"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "bookId": 1,
+          "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28 2",
+          "etat": "BON",
+          "disponible": true
+        }
+      ],
+      "assertions": [
+        "HTTP 200",
+        "Gateway identique"
+      ]
+    },
+    {
+      "name": "Comparer members direct et Gateway",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-adherents",
+          "members"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "nom": "Salma 2",
+          "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+          "type": "ETUDIANT",
+          "suspendu": false
+        }
+      ],
+      "assertions": [
+        "HTTP 200",
+        "Gateway identique"
+      ]
+    },
+    {
+      "name": "Comparer members direct et Gateway",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-adherents",
+          "members"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "nom": "Salma 2",
+          "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+          "type": "ETUDIANT",
+          "suspendu": false
+        }
+      ],
+      "assertions": [
+        "HTTP 200",
+        "Gateway identique"
+      ]
+    },
+    {
+      "name": "Comparer loans direct et Gateway",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-pret",
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [],
+      "assertions": [
+        "HTTP 200",
+        "Gateway identique"
+      ]
+    },
+    {
+      "name": "Comparer loans direct et Gateway",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-pret",
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [],
+      "assertions": [
+        "HTTP 200",
+        "Gateway identique"
+      ]
+    },
+    {
+      "name": "Notification interne",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8080",
+        "path": [
+          "service-notification",
+          "actuator",
+          "health"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 404,
+      "responseBody": {
+        "timestamp": "2026-11-23T10:24:18.038+00:00",
+        "path": "/service-notification/actuator/health",
+        "status": 404,
+        "error": "Not Found",
+        "requestId": "4d7a6766-12"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Configuration service-catalogue",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8888",
+        "path": [
+          "service-catalogue",
+          "default"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "name": "service-catalogue",
+        "profiles": [
+          "default"
+        ],
+        "label": null,
+        "version": "9f1917e077195d0ec73e795eaf306d2e2f0b5c60",
+        "state": "",
+        "propertySources": [
+          {
+            "name": "<workspace>/target/audit/config-source/config-repo/service-catalogue.properties",
+            "source": {
+              "server.port": "8081",
+              "spring.datasource.url": "jdbc:h2:mem:cataloguedb",
+              "spring.datasource.username": "sa",
+              "spring.jpa.hibernate.ddl-auto": "update",
+              "spring.jpa.open-in-view": "false",
+              "spring.h2.console.enabled": "true"
+            }
+          },
+          {
+            "name": "<workspace>/target/audit/config-source/config-repo/application.properties",
+            "source": {
+              "eureka.client.service-url.defaultZone": "${EUREKA_URL:http://localhost:8761/eureka/}",
+              "management.endpoints.web.exposure.include": "health,info",
+              "spring.mvc.problemdetails.enabled": "true",
+              "spring.rabbitmq.host": "${RABBITMQ_HOST:localhost}",
+              "spring.rabbitmq.port": "${RABBITMQ_PORT:5672}",
+              "spring.rabbitmq.username": "${RABBITMQ_USER:guest}",
+              "spring.rabbitmq.password": "${RABBITMQ_PASSWORD:guest}",
+              "spring.rabbitmq.connection-timeout": "2s",
+              "biblio.notifications.queue": "notifications.email"
+            }
+          }
+        ]
+      },
+      "assertions": [
+        "HTTP 200",
+        "Propriétés globales et spécifiques",
+        "Version Git et port centralise"
+      ]
+    },
+    {
+      "name": "Configuration service-adherents",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8888",
+        "path": [
+          "service-adherents",
+          "default"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "name": "service-adherents",
+        "profiles": [
+          "default"
+        ],
+        "label": null,
+        "version": "9f1917e077195d0ec73e795eaf306d2e2f0b5c60",
+        "state": "",
+        "propertySources": [
+          {
+            "name": "<workspace>/target/audit/config-source/config-repo/service-adherents.properties",
+            "source": {
+              "server.port": "8082",
+              "spring.datasource.url": "jdbc:h2:mem:adherentsdb",
+              "spring.datasource.username": "sa",
+              "spring.jpa.hibernate.ddl-auto": "update",
+              "spring.jpa.open-in-view": "false",
+              "spring.h2.console.enabled": "true",
+              "spring.cloud.openfeign.client.config.default.connectTimeout": "1000",
+              "spring.cloud.openfeign.client.config.default.readTimeout": "2000"
+            }
+          },
+          {
+            "name": "<workspace>/target/audit/config-source/config-repo/application.properties",
+            "source": {
+              "eureka.client.service-url.defaultZone": "${EUREKA_URL:http://localhost:8761/eureka/}",
+              "management.endpoints.web.exposure.include": "health,info",
+              "spring.mvc.problemdetails.enabled": "true",
+              "spring.rabbitmq.host": "${RABBITMQ_HOST:localhost}",
+              "spring.rabbitmq.port": "${RABBITMQ_PORT:5672}",
+              "spring.rabbitmq.username": "${RABBITMQ_USER:guest}",
+              "spring.rabbitmq.password": "${RABBITMQ_PASSWORD:guest}",
+              "spring.rabbitmq.connection-timeout": "2s",
+              "biblio.notifications.queue": "notifications.email"
+            }
+          }
+        ]
+      },
+      "assertions": [
+        "HTTP 200",
+        "Propriétés globales et spécifiques",
+        "Version Git et port centralise"
+      ]
+    },
+    {
+      "name": "Configuration service-pret",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8888",
+        "path": [
+          "service-pret",
+          "default"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "name": "service-pret",
+        "profiles": [
+          "default"
+        ],
+        "label": null,
+        "version": "9f1917e077195d0ec73e795eaf306d2e2f0b5c60",
+        "state": "",
+        "propertySources": [
+          {
+            "name": "<workspace>/target/audit/config-source/config-repo/service-pret.properties",
+            "source": {
+              "server.port": "8083",
+              "spring.datasource.url": "jdbc:h2:mem:pretdb",
+              "spring.datasource.username": "sa",
+              "spring.jpa.hibernate.ddl-auto": "update",
+              "spring.jpa.open-in-view": "false",
+              "spring.cloud.openfeign.client.config.default.connectTimeout": "1000",
+              "spring.cloud.openfeign.client.config.default.readTimeout": "2000",
+              "resilience4j.retry.configs.default.max-attempts": "3",
+              "resilience4j.retry.configs.default.wait-duration": "200ms",
+              "resilience4j.circuitbreaker.configs.default.sliding-window-size": "6",
+              "resilience4j.circuitbreaker.configs.default.minimum-number-of-calls": "3",
+              "resilience4j.circuitbreaker.configs.default.wait-duration-in-open-state": "10s",
+              "resilience4j.circuitbreaker.configs.default.automatic-transition-from-open-to-half-open-enabled": "true",
+              "resilience4j.circuitbreaker.configs.default.permitted-number-of-calls-in-half-open-state": "3",
+              "resilience4j.circuitbreaker.instances.catalogue.base-config": "default",
+              "resilience4j.circuitbreaker.instances.adherents.base-config": "default",
+              "resilience4j.retry.instances.catalogue.base-config": "default",
+              "resilience4j.retry.instances.adherents.base-config": "default",
+              "resilience4j.retry.configs.default.retry-exceptions": "com.biblioshare.pret.client.RemoteUnavailable",
+              "resilience4j.bulkhead.instances.catalogue.max-concurrent-calls": "10",
+              "resilience4j.bulkhead.instances.catalogue.max-wait-duration": "0ms",
+              "resilience4j.bulkhead.instances.adherents.max-concurrent-calls": "10",
+              "resilience4j.bulkhead.instances.adherents.max-wait-duration": "0ms",
+              "resilience4j.ratelimiter.instances.consultation.limit-for-period": "5",
+              "resilience4j.ratelimiter.instances.consultation.limit-refresh-period": "1s",
+              "resilience4j.ratelimiter.instances.consultation.timeout-duration": "0ms"
+            }
+          },
+          {
+            "name": "<workspace>/target/audit/config-source/config-repo/application.properties",
+            "source": {
+              "eureka.client.service-url.defaultZone": "${EUREKA_URL:http://localhost:8761/eureka/}",
+              "management.endpoints.web.exposure.include": "health,info",
+              "spring.mvc.problemdetails.enabled": "true",
+              "spring.rabbitmq.host": "${RABBITMQ_HOST:localhost}",
+              "spring.rabbitmq.port": "${RABBITMQ_PORT:5672}",
+              "spring.rabbitmq.username": "${RABBITMQ_USER:guest}",
+              "spring.rabbitmq.password": "${RABBITMQ_PASSWORD:guest}",
+              "spring.rabbitmq.connection-timeout": "2s",
+              "biblio.notifications.queue": "notifications.email"
+            }
+          }
+        ]
+      },
+      "assertions": [
+        "HTTP 200",
+        "Propriétés globales et spécifiques",
+        "Version Git et port centralise"
+      ]
+    },
+    {
+      "name": "Configuration service-notification",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8888",
+        "path": [
+          "service-notification",
+          "default"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "name": "service-notification",
+        "profiles": [
+          "default"
+        ],
+        "label": null,
+        "version": "9f1917e077195d0ec73e795eaf306d2e2f0b5c60",
+        "state": "",
+        "propertySources": [
+          {
+            "name": "<workspace>/target/audit/config-source/config-repo/service-notification.properties",
+            "source": {
+              "server.port": "8084",
+              "spring.mail.host": "${MAIL_HOST:localhost}",
+              "spring.mail.port": "${MAIL_PORT:1025}",
+              "spring.mail.properties.mail.smtp.connectiontimeout": "5000",
+              "spring.mail.properties.mail.smtp.timeout": "3000",
+              "spring.mail.properties.mail.smtp.writetimeout": "5000",
+              "spring.rabbitmq.listener.simple.retry.enabled": "true",
+              "spring.rabbitmq.listener.simple.retry.max-attempts": "3",
+              "spring.rabbitmq.listener.simple.default-requeue-rejected": "false"
+            }
+          },
+          {
+            "name": "<workspace>/target/audit/config-source/config-repo/application.properties",
+            "source": {
+              "eureka.client.service-url.defaultZone": "${EUREKA_URL:http://localhost:8761/eureka/}",
+              "management.endpoints.web.exposure.include": "health,info",
+              "spring.mvc.problemdetails.enabled": "true",
+              "spring.rabbitmq.host": "${RABBITMQ_HOST:localhost}",
+              "spring.rabbitmq.port": "${RABBITMQ_PORT:5672}",
+              "spring.rabbitmq.username": "${RABBITMQ_USER:guest}",
+              "spring.rabbitmq.password": "${RABBITMQ_PASSWORD:guest}",
+              "spring.rabbitmq.connection-timeout": "2s",
+              "biblio.notifications.queue": "notifications.email"
+            }
+          }
+        ]
+      },
+      "assertions": [
+        "HTTP 200",
+        "Propriétés globales et spécifiques",
+        "Version Git et port centralise"
+      ]
+    },
+    {
+      "name": "Configuration gateway-service",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8888",
+        "path": [
+          "gateway-service",
+          "default"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "name": "gateway-service",
+        "profiles": [
+          "default"
+        ],
+        "label": null,
+        "version": "9f1917e077195d0ec73e795eaf306d2e2f0b5c60",
+        "state": "",
+        "propertySources": [
+          {
+            "name": "<workspace>/target/audit/config-source/config-repo/gateway-service.properties",
+            "source": {
+              "server.port": "8080",
+              "spring.cloud.gateway.server.webflux.discovery.locator.enabled": "true",
+              "spring.cloud.gateway.server.webflux.discovery.locator.lower-case-service-id": "true",
+              "spring.cloud.gateway.server.webflux.discovery.locator.include-expression": "serviceId.toLowerCase().matches('service-(catalogue|adherents|pret)')"
+            }
+          },
+          {
+            "name": "<workspace>/target/audit/config-source/config-repo/application.properties",
+            "source": {
+              "eureka.client.service-url.defaultZone": "${EUREKA_URL:http://localhost:8761/eureka/}",
+              "management.endpoints.web.exposure.include": "health,info",
+              "spring.mvc.problemdetails.enabled": "true",
+              "spring.rabbitmq.host": "${RABBITMQ_HOST:localhost}",
+              "spring.rabbitmq.port": "${RABBITMQ_PORT:5672}",
+              "spring.rabbitmq.username": "${RABBITMQ_USER:guest}",
+              "spring.rabbitmq.password": "${RABBITMQ_PASSWORD:guest}",
+              "spring.rabbitmq.connection-timeout": "2s",
+              "biblio.notifications.queue": "notifications.email"
+            }
+          }
+        ]
+      },
+      "assertions": [
+        "HTTP 200",
+        "Propriétés globales et spécifiques",
+        "Version Git et port centralise"
+      ]
+    },
+    {
+      "name": "Refuser une reservation pour un ouvrage inconnu",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "reservations"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "bookId": 99999999,
+        "memberId": "1"
+      },
+      "status": 404,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Not Found",
+        "status": 404,
+        "detail": "Livre introuvable",
+        "instance": "/reservations"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Refuser un adherent inexistant",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "copyId": "1",
+        "memberId": 99999999,
+        "dateRetourPrevue": "2099-01-01"
+      },
+      "status": 404,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Not Found",
+        "status": 404,
+        "detail": "Ressource distante introuvable",
+        "instance": "/loans"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Creer un adherent suspendu",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "members"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "nom": "Audit",
+        "email": "suspendu+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+        "type": "ETUDIANT",
+        "suspendu": true
+      },
+      "status": 201,
+      "responseBody": {
+        "id": 3,
+        "nom": "Audit",
+        "email": "suspendu+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+        "type": "ETUDIANT",
+        "suspendu": true
+      },
+      "assertions": [
+        "HTTP 201"
+      ]
+    },
+    {
+      "name": "Refuser un adherent suspendu",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "copyId": "1",
+        "memberId": "3",
+        "dateRetourPrevue": "2099-01-01"
+      },
+      "status": 409,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Conflict",
+        "status": 409,
+        "detail": "Adherent suspendu ou amende impayee",
+        "instance": "/loans"
+      },
+      "assertions": [
+        "HTTP 409"
+      ]
+    },
+    {
+      "name": "Créer un emprunt",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "copyId": "1",
+        "memberId": "1",
+        "dateRetourPrevue": "2026-12-07"
+      },
+      "status": 201,
+      "responseBody": {
+        "id": 1,
+        "copyId": 1,
+        "memberId": 1,
+        "dateEmprunt": "2026-11-23",
+        "dateRetourPrevue": "2026-12-07",
+        "dateRetourReelle": null,
+        "statut": "EN_COURS",
+        "idempotencyKey": "04e70278-0068-4bd0-81fd-2d4e5fc8d574"
+      },
+      "assertions": [
+        "HTTP 201",
+        "Emprunt en cours"
+      ]
+    },
+    {
+      "name": "Consulter les données enrichies",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans",
+          "1",
+          "details"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "loan": {
+          "id": 1,
+          "copyId": 1,
+          "memberId": 1,
+          "dateEmprunt": "2026-11-23",
+          "dateRetourPrevue": "2026-12-07",
+          "dateRetourReelle": null,
+          "statut": "EN_COURS",
+          "idempotencyKey": "04e70278-0068-4bd0-81fd-2d4e5fc8d574"
+        },
+        "copy": {
+          "id": 1,
+          "bookId": 1,
+          "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28 2",
+          "etat": "BON",
+          "disponible": false
+        },
+        "book": {
+          "id": 1,
+          "titre": "Les Fleurs du mal 2",
+          "auteur": "Charles Baudelaire",
+          "isbn": "isbn-15745b1f-ea15-4296-9498-51e0950a3a28",
+          "categorie": "Poésie"
+        },
+        "member": {
+          "id": 1,
+          "nom": "Salma 2",
+          "email": "salma+15745b1f-ea15-4296-9498-51e0950a3a28@example.test",
+          "type": "ETUDIANT",
+          "suspendu": false
+        },
+        "fines": [],
+        "donneesManquantes": []
+      },
+      "assertions": [
+        "HTTP 200",
+        "Livre, exemplaire, adhérent et amendes"
+      ]
+    },
+    {
+      "name": "Refuser un second emprunt du même exemplaire",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "copyId": "1",
+        "memberId": "1",
+        "dateRetourPrevue": "2026-12-07"
+      },
+      "status": 409,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Conflict",
+        "status": 409,
+        "detail": "Exemplaire indisponible",
+        "instance": "/loans"
+      },
+      "assertions": [
+        "HTTP 409"
+      ]
+    },
+    {
+      "name": "Refuser un exemplaire inexistant",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "copyId": 99999999,
+        "memberId": "1",
+        "dateRetourPrevue": "2026-12-07"
+      },
+      "status": 404,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Not Found",
+        "status": 404,
+        "detail": "Ressource distante introuvable",
+        "instance": "/loans"
+      },
+      "assertions": [
+        "HTTP 404"
+      ]
+    },
+    {
+      "name": "Refuser une création sans clé",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "copyId": "1",
+        "memberId": "1",
+        "dateRetourPrevue": "2026-12-07"
+      },
+      "status": 400,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Bad Request",
+        "status": 400,
+        "detail": "Required header 'Idempotency-Key' is not present.",
+        "instance": "/loans"
+      },
+      "assertions": [
+        "HTTP 400"
+      ]
+    },
+    {
+      "name": "Consulter un emprunt simple",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "copyId": 1,
+        "memberId": 1,
+        "dateEmprunt": "2026-11-23",
+        "dateRetourPrevue": "2026-12-07",
+        "dateRetourReelle": null,
+        "statut": "EN_COURS",
+        "idempotencyKey": "04e70278-0068-4bd0-81fd-2d4e5fc8d574"
+      },
+      "assertions": [
+        "HTTP 200",
+        "Emprunt local"
+      ]
+    },
+    {
+      "name": "Refuser la modification d un exemplaire attribue",
+      "method": "PUT",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "bookId": "1",
+        "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28 2",
+        "etat": "BON",
+        "disponible": true
+      },
+      "status": 409,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Conflict",
+        "status": 409,
+        "detail": "Exemplaire attribue a un emprunt",
+        "instance": "/copies/1"
+      },
+      "assertions": [
+        "HTTP 409"
+      ]
+    },
+    {
+      "name": "Exemplaire attribue",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "bookId": 1,
+        "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28 2",
+        "etat": "BON",
+        "disponible": false
+      },
+      "assertions": [
+        "HTTP 200",
+        "Indisponible"
+      ]
+    },
+    {
+      "name": "Réserver pour le prochain retour",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "reservations"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "memberId": "1",
+        "bookId": "1"
+      },
+      "status": 201,
+      "responseBody": {
+        "id": 1,
+        "memberId": 1,
+        "bookId": 1,
+        "date": "2026-11-23T10:24:22.649161600Z",
+        "statut": "EN_ATTENTE"
+      },
+      "assertions": [
+        "HTTP 201"
+      ]
+    },
+    {
+      "name": "Retourner et libérer l’exemplaire",
+      "method": "PUT",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans",
+          "1",
+          "return"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "copyId": 1,
+        "memberId": 1,
+        "dateEmprunt": "2026-11-23",
+        "dateRetourPrevue": "2026-12-07",
+        "dateRetourReelle": "2026-11-23",
+        "statut": "RETOURNE",
+        "idempotencyKey": "04e70278-0068-4bd0-81fd-2d4e5fc8d574"
+      },
+      "assertions": [
+        "HTTP 200",
+        "Retour enregistré"
+      ]
+    },
+    {
+      "name": "Vérifier que la réservation a été traitée",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8082",
+        "path": [
+          "reservations",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "memberId": 1,
+        "bookId": 1,
+        "date": "2026-11-23T10:24:22.649162Z",
+        "statut": "NOTIFIEE"
+      },
+      "assertions": [
+        "HTTP 200",
+        "Réservation notifiée"
+      ]
+    },
+    {
+      "name": "Vérifier la disponibilité après retour",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8181",
+        "path": [
+          "copies",
+          "1"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "bookId": 1,
+        "codeExemplaire": "EX-15745b1f-ea15-4296-9498-51e0950a3a28 2",
+        "etat": "BON",
+        "disponible": true
+      },
+      "assertions": [
+        "HTTP 200",
+        "Exemplaire disponible"
+      ]
+    },
+    {
+      "name": "Détecter les emprunts échus",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans",
+          "detect-overdue"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "retardsDetectes": 0
+      },
+      "assertions": [
+        "HTTP 200",
+        "Nombre de retards"
+      ]
+    },
+    {
+      "name": "Consulter les amendes",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "fines"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [],
+      "assertions": [
+        "HTTP 200"
+      ]
+    },
+    {
+      "name": "Lire les messages Mailpit",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8025",
+        "path": [
+          "api",
+          "v1",
+          "messages"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": {
+        "total": 9,
+        "messageEvidence": "See integration.jsonl for matching test messages"
+      },
+      "assertions": [
+        "HTTP 200",
+        "Courriel au destinataire du scenario"
+      ]
+    },
+    {
+      "name": "Rejouer la création",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "copyId": "1",
+        "memberId": "1",
+        "dateRetourPrevue": "2026-12-07"
+      },
+      "status": 200,
+      "responseBody": {
+        "id": 1,
+        "copyId": 1,
+        "memberId": 1,
+        "dateEmprunt": "2026-11-23",
+        "dateRetourPrevue": "2026-12-07",
+        "dateRetourReelle": "2026-11-23",
+        "statut": "RETOURNE",
+        "idempotencyKey": "04e70278-0068-4bd0-81fd-2d4e5fc8d574"
+      },
+      "assertions": [
+        "HTTP 200",
+        "Même identifiant"
+      ]
+    },
+    {
+      "name": "Compter les emprunts créés pour la clé",
+      "method": "GET",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": null,
+      "status": 200,
+      "responseBody": [
+        {
+          "id": 1,
+          "copyId": 1,
+          "memberId": 1,
+          "dateEmprunt": "2026-11-23",
+          "dateRetourPrevue": "2026-12-07",
+          "dateRetourReelle": "2026-11-23",
+          "statut": "RETOURNE",
+          "idempotencyKey": "04e70278-0068-4bd0-81fd-2d4e5fc8d574"
+        }
+      ],
+      "assertions": [
+        "HTTP 200",
+        "Une ligne pour la clé"
+      ]
+    },
+    {
+      "name": "Refuser la clé avec une autre demande",
+      "method": "POST",
+      "url": {
+        "protocol": "http",
+        "port": "8083",
+        "path": [
+          "loans"
+        ],
+        "host": [
+          "localhost"
+        ],
+        "query": [],
+        "variable": []
+      },
+      "requestBody": {
+        "copyId": "1",
+        "memberId": 99999999,
+        "dateRetourPrevue": "2026-12-07"
+      },
+      "status": 409,
+      "responseBody": {
+        "type": "about:blank",
+        "title": "Conflict",
+        "status": 409,
+        "detail": "Cle deja associee a une autre demande",
+        "instance": "/loans"
+      },
+      "assertions": [
+        "HTTP 409"
+      ]
+    }
+  ]
+}

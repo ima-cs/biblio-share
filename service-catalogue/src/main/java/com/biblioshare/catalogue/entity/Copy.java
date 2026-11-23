@@ -14,6 +14,27 @@ public class Copy {
     private String etat;
     private boolean disponible = true;
 
+    private String empruntToken;
+
+    @com.fasterxml.jackson.annotation.JsonIgnore
+    public boolean isAttribue() {
+        return empruntToken != null;
+    }
+
+    public boolean estAttribueA(String token) {
+        return token.equals(empruntToken);
+    }
+
+    public void attribuer(String token) {
+        empruntToken = token;
+        disponible = false;
+    }
+
+    public void liberer() {
+        empruntToken = null;
+        disponible = true;
+    }
+
     public Copy() {
     }
 

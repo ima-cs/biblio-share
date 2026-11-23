@@ -2,6 +2,8 @@ package com.biblioshare.catalogue.controller;
 
 import com.biblioshare.catalogue.entity.Book;
 import com.biblioshare.catalogue.service.BookService;
+import com.biblioshare.catalogue.dto.BookRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,14 +31,14 @@ public class BookController {
     }
 
     @PostMapping
-    public ResponseEntity<Book> createBook(@RequestBody Book book) {
-        Book created = bookService.createBook(book);
+    public ResponseEntity<Book> createBook(@Valid @RequestBody BookRequest book) {
+        Book created = bookService.createBook(book.toEntity());
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @PutMapping("/{id}")
-    public Book updateBook(@PathVariable Long id, @RequestBody Book book) {
-        return bookService.updateBook(id, book);
+    public Book updateBook(@PathVariable Long id, @Valid @RequestBody BookRequest book) {
+        return bookService.updateBook(id, book.toEntity());
     }
 
     @DeleteMapping("/{id}")

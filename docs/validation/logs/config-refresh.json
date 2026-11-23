@@ -1,0 +1,42 @@
+[
+  {
+    "step": "before",
+    "http": 200,
+    "version": "9f1917e077195d0ec73e795eaf306d2e2f0b5c60",
+    "value": null,
+    "sources": [
+      "service-catalogue.properties",
+      "application.properties"
+    ]
+  },
+  {
+    "step": "uncommitted source edit ignored",
+    "http": 200,
+    "version": "9f1917e077195d0ec73e795eaf306d2e2f0b5c60",
+    "value": null,
+    "sources": [
+      "service-catalogue.properties",
+      "application.properties"
+    ]
+  },
+  {
+    "step": "new commit served without server restart",
+    "http": 200,
+    "version": "05fce45826e0cfecf0687ffaf198a3b36a7ec3c9",
+    "value": "proof-v3",
+    "sources": [
+      "service-catalogue.properties",
+      "application.properties"
+    ]
+  },
+  {
+    "step": "restored commit",
+    "http": 200,
+    "version": "eb42896f1cce466d8d357f48118c251045c29fe0",
+    "value": null,
+    "sources": [
+      "service-catalogue.properties",
+      "application.properties"
+    ]
+  }
+]

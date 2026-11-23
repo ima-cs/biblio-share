@@ -1,0 +1,699 @@
+npx.cmd : (node:32092) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+
+Au caractère Ligne:2 : 52
+
++ ... tion.json'; npx.cmd --offline --yes newman@6.2.3 run $c --env-var 'ca ...
+
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    + CategoryInfo          : NotSpecified: ((node:32092) [D...ts.F_OK instead:String) [], RemoteException
+
+    + FullyQualifiedErrorId : NativeCommandError
+
+
+
+(Use `node --trace-deprecation ...` to show where the warning was created)
+
+newman
+
+
+
+Biblio-Share
+
+
+
+□ V1 — Catalogue et adhérents
+
+└ Créer livre
+
+  POST http://localhost:8181/books [201 Created, 308B, 302ms]
+
+  √  HTTP 201
+
+
+
+└ Lister livre
+
+  GET http://localhost:8181/books [200 OK, 305B, 12ms]
+
+  √  HTTP 200
+
+
+
+└ Lire livre
+
+  GET http://localhost:8181/books/1 [200 OK, 303B, 44ms]
+
+  √  HTTP 200
+
+
+
+└ Modifier livre
+
+  PUT http://localhost:8181/books/1 [200 OK, 305B, 28ms]
+
+  √  HTTP 200
+
+  √  Modification persistée
+
+
+
+└ Rejeter le corps incomplet livre
+
+  POST http://localhost:8181/books [400 Bad Request, 265B, 91ms]
+
+  √  HTTP 400
+
+
+
+└ Rechercher un identifiant inexistant livre
+
+  GET http://localhost:8181/books/99999999 [404 Not Found, 292B, 15ms]
+
+  √  HTTP 404
+
+
+
+└ Créer exemplaire
+
+  POST http://localhost:8181/copies [201 Created, 278B, 96ms]
+
+  √  HTTP 201
+
+
+
+└ Lister exemplaire
+
+  GET http://localhost:8181/copies [200 OK, 275B, 10ms]
+
+  √  HTTP 200
+
+
+
+└ Lire exemplaire
+
+  GET http://localhost:8181/copies/1 [200 OK, 273B, 10ms]
+
+  √  HTTP 200
+
+
+
+└ Modifier exemplaire
+
+  PUT http://localhost:8181/copies/1 [200 OK, 275B, 19ms]
+
+  √  HTTP 200
+
+  √  Modification persistée
+
+
+
+└ Rejeter le corps incomplet exemplaire
+
+  POST http://localhost:8181/copies [400 Bad Request, 266B, 7ms]
+
+  √  HTTP 400
+
+
+
+└ Rechercher un identifiant inexistant exemplaire
+
+  GET http://localhost:8181/copies/99999999 [404 Not Found, 298B, 14ms]
+
+  √  HTTP 404
+
+
+
+└ Créer adhérent
+
+  POST http://localhost:8082/members [201 Created, 292B, 323ms]
+
+  √  HTTP 201
+
+
+
+└ Lister adhérent
+
+  GET http://localhost:8082/members [200 OK, 289B, 15ms]
+
+  √  HTTP 200
+
+
+
+└ Lire adhérent
+
+  GET http://localhost:8082/members/1 [200 OK, 287B, 35ms]
+
+  √  HTTP 200
+
+
+
+└ Modifier adhérent
+
+  PUT http://localhost:8082/members/1 [200 OK, 289B, 34ms]
+
+  √  HTTP 200
+
+  √  Modification persistée
+
+
+
+└ Rejeter le corps incomplet adhérent
+
+  POST http://localhost:8082/members [400 Bad Request, 267B, 73ms]
+
+  √  HTTP 400
+
+
+
+└ Rechercher un identifiant inexistant adhérent
+
+  GET http://localhost:8082/members/99999999 [404 Not Found, 297B, 14ms]
+
+  √  HTTP 404
+
+
+
+└ Créer une ressource à supprimer livre
+
+  POST http://localhost:8181/books [201 Created, 315B, 11ms]
+
+  √  HTTP 201
+
+
+
+└ Supprimer livre
+
+  DELETE http://localhost:8181/books/2 [204 No Content, 112B, 38ms]
+
+  √  HTTP 204
+
+
+
+└ Vérifier la suppression livre
+
+  GET http://localhost:8181/books/2 [404 Not Found, 285B, 8ms]
+
+  √  HTTP 404
+
+
+
+└ Créer une ressource à supprimer exemplaire
+
+  POST http://localhost:8181/copies [201 Created, 285B, 13ms]
+
+  √  HTTP 201
+
+
+
+└ Supprimer exemplaire
+
+  DELETE http://localhost:8181/copies/2 [204 No Content, 112B, 10ms]
+
+  √  HTTP 204
+
+
+
+└ Vérifier la suppression exemplaire
+
+  GET http://localhost:8181/copies/2 [404 Not Found, 291B, 8ms]
+
+  √  HTTP 404
+
+
+
+└ Créer une ressource à supprimer adhérent
+
+  POST http://localhost:8082/members [201 Created, 299B, 9ms]
+
+  √  HTTP 201
+
+
+
+└ Supprimer adhérent
+
+  DELETE http://localhost:8082/members/2 [204 No Content, 112B, 70ms]
+
+  √  HTTP 204
+
+
+
+└ Vérifier la suppression adhérent
+
+  GET http://localhost:8082/members/2 [404 Not Found, 290B, 7ms]
+
+  √  HTTP 404
+
+
+
+└ Refuser un titre vide
+
+  POST http://localhost:8181/books [400 Bad Request, 265B, 5ms]
+
+  √  HTTP 400
+
+
+
+└ Refuser un email mal forme
+
+  POST http://localhost:8082/members [400 Bad Request, 267B, 8ms]
+
+  √  HTTP 400
+
+
+
+└ Refuser un bookId negatif
+
+  POST http://localhost:8181/copies [400 Bad Request, 266B, 13ms]
+
+  √  HTTP 400
+
+
+
+└ Refuser un livre inexistant pour un exemplaire
+
+  POST http://localhost:8181/copies [404 Not Found, 284B, 13ms]
+
+  √  HTTP 404
+
+
+
+□ V2 — Eureka et Gateway
+
+└ Vérifier les instances UP
+
+  GET http://localhost:8761/eureka/apps [200 OK, 1.17kB, 15ms]
+
+  √  HTTP 200
+
+  √  Toutes les instances attendues sont UP
+
+
+
+└ Router vers service-catalogue
+
+  GET http://localhost:8080/service-catalogue/books [200 OK, 259B, 30ms]
+
+  √  HTTP 200
+
+  √  Liste JSON
+
+
+
+└ Router vers service-adherents
+
+  GET http://localhost:8080/service-adherents/members [200 OK, 243B, 16ms]
+
+  √  HTTP 200
+
+  √  Liste JSON
+
+
+
+└ Router vers service-pret
+
+  GET http://localhost:8080/service-pret/loans [200 OK, 118B, 14ms]
+
+  √  HTTP 200
+
+  √  Liste JSON
+
+
+
+└ Comparer books direct et Gateway
+
+  GET http://localhost:8181/books [200 OK, 307B, 10ms]
+
+  √  HTTP 200
+
+  GET http://localhost:8080/service-catalogue/books [200 OK, 259B, 20ms]
+
+  √  Gateway identique
+
+
+
+└ Comparer copies direct et Gateway
+
+  GET http://localhost:8181/copies [200 OK, 277B, 9ms]
+
+  √  HTTP 200
+
+  GET http://localhost:8080/service-catalogue/copies [200 OK, 229B, 18ms]
+
+  √  Gateway identique
+
+
+
+└ Comparer members direct et Gateway
+
+  GET http://localhost:8082/members [200 OK, 291B, 13ms]
+
+  √  HTTP 200
+
+  GET http://localhost:8080/service-adherents/members [200 OK, 243B, 16ms]
+
+  √  Gateway identique
+
+
+
+└ Comparer loans direct et Gateway
+
+  GET http://localhost:8083/loans [200 OK, 166B, 11ms]
+
+  √  HTTP 200
+
+  GET http://localhost:8080/service-pret/loans [200 OK, 118B, 18ms]
+
+  √  Gateway identique
+
+
+
+└ Notification interne
+
+  GET http://localhost:8080/service-notification/actuator/health [404 Not Found, 230B, 81ms]
+
+  √  HTTP 404
+
+
+
+□ V3 — Config Server
+
+└ Configuration service-catalogue
+
+  GET http://localhost:8888/service-catalogue/default [200 OK, 1.35kB, 216ms]
+
+  √  HTTP 200
+
+  √  Propriétés globales et spécifiques
+
+  √  Version Git et port centralise
+
+
+
+└ Configuration service-adherents
+
+  GET http://localhost:8888/service-adherents/default [200 OK, 1.49kB, 301ms]
+
+  √  HTTP 200
+
+  √  Propriétés globales et spécifiques
+
+  √  Version Git et port centralise
+
+
+
+└ Configuration service-pret
+
+  GET http://localhost:8888/service-pret/default [200 OK, 2.84kB, 320ms]
+
+  √  HTTP 200
+
+  √  Propriétés globales et spécifiques
+
+  √  Version Git et port centralise
+
+
+
+└ Configuration service-notification
+
+  GET http://localhost:8888/service-notification/default [200 OK, 1.59kB, 547ms]
+
+  √  HTTP 200
+
+  √  Propriétés globales et spécifiques
+
+  √  Version Git et port centralise
+
+
+
+└ Configuration gateway-service
+
+  GET http://localhost:8888/gateway-service/default [200 OK, 1.46kB, 341ms]
+
+  √  HTTP 200
+
+  √  Propriétés globales et spécifiques
+
+  √  Version Git et port centralise
+
+
+
+□ V4 — Emprunts et OpenFeign
+
+└ Refuser une reservation pour un ouvrage inconnu
+
+  POST http://localhost:8082/reservations [404 Not Found, 290B, 314ms]
+
+  √  HTTP 404
+
+
+
+└ Refuser un adherent inexistant
+
+  POST http://localhost:8083/loans [404 Not Found, 296B, 696ms]
+
+  √  HTTP 404
+
+
+
+└ Creer un adherent suspendu
+
+  POST http://localhost:8082/members [201 Created, 294B, 11ms]
+
+  √  HTTP 201
+
+
+
+└ Refuser un adherent suspendu
+
+  POST http://localhost:8083/loans [409 Conflict, 299B, 29ms]
+
+  √  HTTP 409
+
+
+
+└ Créer un emprunt
+
+  POST http://localhost:8083/loans [201 Created, 360B, 245ms]
+
+  √  HTTP 201
+
+  √  Emprunt en cours
+
+
+
+└ Consulter les données enrichies
+
+  GET http://localhost:8083/loans/1/details [200 OK, 802B, 45ms]
+
+  √  HTTP 200
+
+  √  Livre, exemplaire, adhérent et amendes
+
+
+
+└ Refuser un second emprunt du même exemplaire
+
+  POST http://localhost:8083/loans [409 Conflict, 287B, 12ms]
+
+  √  HTTP 409
+
+
+
+└ Refuser un exemplaire inexistant
+
+  POST http://localhost:8083/loans [404 Not Found, 296B, 21ms]
+
+  √  HTTP 404
+
+
+
+└ Refuser une création sans clé
+
+  POST http://localhost:8083/loans [400 Bad Request, 290B, 7ms]
+
+  √  HTTP 400
+
+
+
+└ Consulter un emprunt simple
+
+  GET http://localhost:8083/loans/1 [200 OK, 355B, 12ms]
+
+  √  HTTP 200
+
+  √  Emprunt local
+
+
+
+└ Refuser la modification d un exemplaire attribue
+
+  PUT http://localhost:8181/copies/1 [409 Conflict, 299B, 9ms]
+
+  √  HTTP 409
+
+
+
+└ Exemplaire attribue
+
+  GET http://localhost:8181/copies/1 [200 OK, 276B, 7ms]
+
+  √  HTTP 200
+
+  √  Indisponible
+
+
+
+□ V5 — Notifications
+
+└ Réserver pour le prochain retour
+
+  POST http://localhost:8082/reservations [201 Created, 263B, 51ms]
+
+  √  HTTP 201
+
+
+
+└ Retourner et libérer l’exemplaire
+
+  PUT http://localhost:8083/loans/1/return [200 OK, 363B, 239ms]
+
+  √  HTTP 200
+
+  √  Retour enregistré
+
+
+
+└ Vérifier que la réservation a été traitée
+
+  GET http://localhost:8082/reservations/1 [200 OK, 253B, 10ms]
+
+  √  HTTP 200
+
+  √  Réservation notifiée
+
+
+
+└ Vérifier la disponibilité après retour
+
+  GET http://localhost:8181/copies/1 [200 OK, 275B, 8ms]
+
+  √  HTTP 200
+
+  √  Exemplaire disponible
+
+
+
+└ Détecter les emprunts échus
+
+  POST http://localhost:8083/loans/detect-overdue [200 OK, 185B, 21ms]
+
+  √  HTTP 200
+
+  √  Nombre de retards
+
+
+
+└ Consulter les amendes
+
+  GET http://localhost:8083/fines [200 OK, 166B, 8ms]
+
+  √  HTTP 200
+
+
+
+└ Lire les messages Mailpit
+
+  GET http://localhost:8025/api/v1/messages [200 OK, 1.43kB, 13ms]
+
+  √  HTTP 200
+
+  √  Courriel au destinataire du scenario
+
+
+
+□ V6 — Résilience et idempotence
+
+└ Rejouer la création
+
+  POST http://localhost:8083/loans [200 OK, 363B, 12ms]
+
+  √  HTTP 200
+
+  √  Même identifiant
+
+
+
+└ Compter les emprunts créés pour la clé
+
+  GET http://localhost:8083/loans [200 OK, 365B, 8ms]
+
+  √  HTTP 200
+
+  √  Une ligne pour la clé
+
+
+
+└ Refuser la clé avec une autre demande
+
+  POST http://localhost:8083/loans [409 Conflict, 301B, 8ms]
+
+  √  HTTP 409
+
+
+
+□ V6 — Résilience et idempotence / Pannes manuelles (hors parcours nominal)
+
+└ Catalogue arrêté — consulter en mode dégradé
+
+
+
+└ Catalogue arrêté — refuser la création
+
+
+
+└ Adherents arrete - consulter en mode degrade
+
+
+
+└ Adherents arrete - refuser la creation
+
+
+
+┌─────────────────────────┬───────────────────┬───────────────────┐
+
+│                         │          executed │            failed │
+
+├─────────────────────────┼───────────────────┼───────────────────┤
+
+│              iterations │                 1 │                 0 │
+
+├─────────────────────────┼───────────────────┼───────────────────┤
+
+│                requests │                71 │                 0 │
+
+├─────────────────────────┼───────────────────┼───────────────────┤
+
+│            test-scripts │                67 │                 0 │
+
+├─────────────────────────┼───────────────────┼───────────────────┤
+
+│      prerequest-scripts │                77 │                 0 │
+
+├─────────────────────────┼───────────────────┼───────────────────┤
+
+│              assertions │                99 │                 0 │
+
+├─────────────────────────┴───────────────────┴───────────────────┤
+
+│ total run duration: 10.7s                                       │
+
+├─────────────────────────────────────────────────────────────────┤
+
+│ total data received: 17.59kB (approx)                           │
+
+├─────────────────────────────────────────────────────────────────┤
+
+│ average response time: 72ms [min: 5ms, max: 696ms, s.d.: 131ms] │
+
+└─────────────────────────────────────────────────────────────────┘

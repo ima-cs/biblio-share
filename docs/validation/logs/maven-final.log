@@ -1,0 +1,819 @@
+[INFO] Scanning for projects...
+
+[INFO] ------------------------------------------------------------------------
+
+[INFO] Reactor Build Order:
+
+[INFO]
+
+[INFO] Biblio-Share                                                       [pom]
+
+[INFO] service-catalogue                                                  [jar]
+
+[INFO] service-adherents                                                  [jar]
+
+[INFO] eureka-server                                                      [jar]
+
+[INFO] config-server                                                      [jar]
+
+[INFO] gateway-service                                                    [jar]
+
+[INFO] service-pret                                                       [jar]
+
+[INFO] service-notification                                               [jar]
+
+[INFO]
+
+[INFO] --------------------< com.biblioshare:biblio-share >--------------------
+
+[INFO] Building Biblio-Share 1.0.0-SNAPSHOT                               [1/8]
+
+[INFO]   from pom.xml
+
+[INFO] --------------------------------[ pom ]---------------------------------
+
+[INFO]
+
+[INFO] -----------------< com.biblioshare:service-catalogue >------------------
+
+[INFO] Building service-catalogue 0.0.1-SNAPSHOT                          [2/8]
+
+[INFO]   from service-catalogue\pom.xml
+
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO]
+
+[INFO] --- resources:3.3.1:resources (default-resources) @ service-catalogue ---
+
+[INFO] Copying 1 resource from src\main\resources to target\validation\classes
+
+[INFO] Copying 0 resource from src\main\resources to target\validation\classes
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:compile (default-compile) @ service-catalogue ---
+
+[INFO] Recompiling the module because of changed source code.
+
+[INFO] Compiling 12 source files with javac [debug parameters release 17] to target\validation\classes
+
+[INFO]
+
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ service-catalogue ---
+
+[INFO] Copying 1 resource from src\test\resources to target\validation\test-classes
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ service-catalogue ---
+
+[INFO] Recompiling the module because of changed dependency.
+
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target\validation\test-classes
+
+[INFO]
+
+[INFO] --- surefire:3.5.4:test (default-test) @ service-catalogue ---
+
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+
+[INFO]
+
+[INFO] -------------------------------------------------------
+
+[INFO]  T E S T S
+
+[INFO] -------------------------------------------------------
+
+[INFO] Running com.biblioshare.catalogue.ServiceCatalogueApplicationTests
+
+11:10:26.724 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.biblioshare.catalogue.ServiceCatalogueApplicationTests]: ServiceCatalogueApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+
+11:10:26.941 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.biblioshare.catalogue.ServiceCatalogueApplication for test class com.biblioshare.catalogue.ServiceCatalogueApplicationTests
+
+
+
+  .   ____          _            __ _ _
+
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+
+ =========|_|==============|___/=/_/_/_/
+
+
+
+ :: Spring Boot ::                (v3.5.6)
+
+
+
+2026-11-23T11:10:28.005+01:00  INFO 13736 --- [           main] c.b.c.ServiceCatalogueApplicationTests   : Starting ServiceCatalogueApplicationTests using Java 17.0.20.1 with PID 13736 (started by imane_e2dsnr5 in <workspace>\service-catalogue)
+
+2026-11-23T11:10:28.007+01:00  INFO 13736 --- [           main] c.b.c.ServiceCatalogueApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+
+2026-11-23T11:10:30.454+01:00  INFO 13736 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+
+2026-11-23T11:10:31.335+01:00  INFO 13736 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 779 ms. Found 2 JPA repository interfaces.
+
+2026-11-23T11:10:32.366+01:00  INFO 13736 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=63cb9096-f770-3268-8a78-9d98802af10d
+
+2026-11-23T11:10:34.787+01:00  INFO 13736 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+
+2026-11-23T11:10:36.097+01:00  INFO 13736 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:91969b87-f22f-4e2c-890d-912d8b76407c user=SA
+
+2026-11-23T11:10:36.110+01:00  INFO 13736 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+
+2026-11-23T11:10:36.470+01:00  INFO 13736 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+
+2026-11-23T11:10:38.521+01:00  INFO 13736 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+
+2026-11-23T11:10:38.691+01:00  INFO 13736 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+
+2026-11-23T11:10:40.225+01:00  INFO 13736 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+
+2026-11-23T11:10:40.931+01:00  INFO 13736 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+
+	Database driver: undefined/unknown
+
+	Database version: 2.3.232
+
+	Autocommit mode: undefined/unknown
+
+	Isolation level: undefined/unknown
+
+	Minimum pool size: undefined/unknown
+
+	Maximum pool size: undefined/unknown
+
+2026-11-23T11:10:46.408+01:00  INFO 13736 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+
+2026-11-23T11:10:46.706+01:00  INFO 13736 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+
+2026-11-23T11:10:48.001+01:00  INFO 13736 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+
+2026-11-23T11:10:54.630+01:00  INFO 13736 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+
+2026-11-23T11:10:54.632+01:00  INFO 13736 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+
+2026-11-23T11:10:54.658+01:00  INFO 13736 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+
+2026-11-23T11:10:54.733+01:00  INFO 13736 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 99 ms
+
+2026-11-23T11:10:55.494+01:00  INFO 13736 --- [           main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+
+2026-11-23T11:10:55.852+01:00  WARN 13736 --- [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+
+2026-11-23T11:10:56.323+01:00  INFO 13736 --- [           main] c.b.c.ServiceCatalogueApplicationTests   : Started ServiceCatalogueApplicationTests in 28.982 seconds (process running for 30.879)
+
+mvn : OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath
+
+has been appended
+
+Au caractère Ligne:2 : 77
+
++ ... 1-hotspot'; mvn verify -B '-Dstyle.color=never' '-Dbiblio.build.direc ...
+
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    + CategoryInfo          : NotSpecified: (OpenJDK 64-Bit ...s been appended:String) [], RemoteException
+
+    + FullyQualifiedErrorId : NativeCommandError
+
+
+
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 34.66 s -- in com.biblioshare.catalogue.ServiceCatalogueApplicationTests
+
+[INFO]
+
+[INFO] Results:
+
+[INFO]
+
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+
+[INFO]
+
+[INFO] --- jar:3.4.2:jar (default-jar) @ service-catalogue ---
+
+[INFO] Building jar: <workspace>\service-catalogue\target\validation\service-catalogue-0.0.1-SNAPSHOT.jar
+
+[INFO]
+
+[INFO] --- spring-boot:3.5.6:repackage (repackage) @ service-catalogue ---
+
+[INFO] Replacing main artifact <workspace>\service-catalogue\target\validation\service-catalogue-0.0.1-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+
+[INFO] The original artifact has been renamed to <workspace>\service-catalogue\target\validation\service-catalogue-0.0.1-SNAPSHOT.jar.original
+
+[INFO]
+
+[INFO] -----------------< com.biblioshare:service-adherents >------------------
+
+[INFO] Building service-adherents 1.0.0-SNAPSHOT                          [3/8]
+
+[INFO]   from service-adherents\pom.xml
+
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO]
+
+[INFO] --- resources:3.3.1:resources (default-resources) @ service-adherents ---
+
+[INFO] Copying 1 resource from src\main\resources to target\validation\classes
+
+[INFO] Copying 0 resource from src\main\resources to target\validation\classes
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:compile (default-compile) @ service-adherents ---
+
+[INFO] Recompiling the module because of changed source code.
+
+[INFO] Compiling 16 source files with javac [debug parameters release 17] to target\validation\classes
+
+[INFO]
+
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ service-adherents ---
+
+[INFO] Copying 1 resource from src\test\resources to target\validation\test-classes
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ service-adherents ---
+
+[INFO] Recompiling the module because of changed dependency.
+
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target\validation\test-classes
+
+[INFO]
+
+[INFO] --- surefire:3.5.4:test (default-test) @ service-adherents ---
+
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+
+[INFO]
+
+[INFO] -------------------------------------------------------
+
+[INFO]  T E S T S
+
+[INFO] -------------------------------------------------------
+
+[INFO] Running com.biblioshare.adherents.MemberApiTests
+
+11:11:20.698 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.biblioshare.adherents.MemberApiTests]: MemberApiTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+
+11:11:20.948 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.biblioshare.adherents.AdherentsApplication for test class com.biblioshare.adherents.MemberApiTests
+
+
+
+  .   ____          _            __ _ _
+
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+
+ =========|_|==============|___/=/_/_/_/
+
+
+
+ :: Spring Boot ::                (v3.5.6)
+
+
+
+2026-11-23T11:11:22.211+01:00  INFO 28304 --- [           main] c.biblioshare.adherents.MemberApiTests   : Starting MemberApiTests using Java 17.0.20.1 with PID 28304 (started by imane_e2dsnr5 in <workspace>\service-adherents)
+
+2026-11-23T11:11:22.211+01:00  INFO 28304 --- [           main] c.biblioshare.adherents.MemberApiTests   : No active profile set, falling back to 1 default profile: "default"
+
+2026-11-23T11:11:27.049+01:00  INFO 28304 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+
+2026-11-23T11:11:27.486+01:00  INFO 28304 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 406 ms. Found 3 JPA repository interfaces.
+
+2026-11-23T11:11:28.970+01:00  INFO 28304 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=75743ded-eb7b-3199-ad38-239c796eaa5a
+
+2026-11-23T11:11:31.095+01:00  INFO 28304 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+
+2026-11-23T11:11:32.445+01:00  INFO 28304 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:f38c76a5-dd96-444d-98ce-d197f37c58ee user=SA
+
+2026-11-23T11:11:32.453+01:00  INFO 28304 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+
+2026-11-23T11:11:32.639+01:00  INFO 28304 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+
+2026-11-23T11:11:32.987+01:00  INFO 28304 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+
+2026-11-23T11:11:33.195+01:00  INFO 28304 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+
+2026-11-23T11:11:34.337+01:00  INFO 28304 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+
+2026-11-23T11:11:34.618+01:00  INFO 28304 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+
+	Database driver: undefined/unknown
+
+	Database version: 2.3.232
+
+	Autocommit mode: undefined/unknown
+
+	Isolation level: undefined/unknown
+
+	Minimum pool size: undefined/unknown
+
+	Maximum pool size: undefined/unknown
+
+2026-11-23T11:11:39.132+01:00  INFO 28304 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+
+2026-11-23T11:11:39.269+01:00  INFO 28304 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+
+2026-11-23T11:11:40.652+01:00  INFO 28304 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+
+2026-11-23T11:11:43.682+01:00  INFO 28304 --- [           main] o.s.c.openfeign.FeignClientFactoryBean   : For 'service-catalogue' URL not provided. Will try picking an instance via load-balancing.
+
+2026-11-23T11:11:48.969+01:00  INFO 28304 --- [           main] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+
+2026-11-23T11:11:48.972+01:00  INFO 28304 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+
+2026-11-23T11:11:48.984+01:00  INFO 28304 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+
+2026-11-23T11:11:49.024+01:00  INFO 28304 --- [           main] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 50 ms
+
+2026-11-23T11:11:49.847+01:00  INFO 28304 --- [           main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+
+2026-11-23T11:11:50.087+01:00  WARN 28304 --- [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+
+2026-11-23T11:11:50.661+01:00  INFO 28304 --- [           main] c.biblioshare.adherents.MemberApiTests   : Started MemberApiTests in 29.199 seconds (process running for 31.201)
+
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has
+
+been appended
+
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 33.01 s -- in com.biblioshare.adherents.MemberApiTests
+
+[INFO]
+
+[INFO] Results:
+
+[INFO]
+
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+
+[INFO]
+
+[INFO] --- jar:3.4.2:jar (default-jar) @ service-adherents ---
+
+[INFO] Building jar: <workspace>\service-adherents\target\validation\service-adherents-1.0.0-SNAPSHOT.jar
+
+[INFO]
+
+[INFO] --- spring-boot:3.5.6:repackage (repackage) @ service-adherents ---
+
+[INFO] Replacing main artifact <workspace>\service-adherents\target\validation\service-adherents-1.0.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+
+[INFO] The original artifact has been renamed to <workspace>\service-adherents\target\validation\service-adherents-1.0.0-SNAPSHOT.jar.original
+
+[INFO]
+
+[INFO] -------------------< com.biblioshare:eureka-server >--------------------
+
+[INFO] Building eureka-server 1.0.0-SNAPSHOT                              [4/8]
+
+[INFO]   from eureka-server\pom.xml
+
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO]
+
+[INFO] --- resources:3.3.1:resources (default-resources) @ eureka-server ---
+
+[INFO] Copying 1 resource from src\main\resources to target\validation\classes
+
+[INFO] Copying 0 resource from src\main\resources to target\validation\classes
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:compile (default-compile) @ eureka-server ---
+
+[INFO] Recompiling the module because of changed source code.
+
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target\validation\classes
+
+[INFO]
+
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ eureka-server ---
+
+[INFO] skip non existing resourceDirectory <workspace>\eureka-server\src\test\resources
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ eureka-server ---
+
+[INFO] No sources to compile
+
+[INFO]
+
+[INFO] --- surefire:3.5.4:test (default-test) @ eureka-server ---
+
+[INFO] No tests to run.
+
+[INFO]
+
+[INFO] --- jar:3.4.2:jar (default-jar) @ eureka-server ---
+
+[INFO] Building jar: <workspace>\eureka-server\target\validation\eureka-server-1.0.0-SNAPSHOT.jar
+
+[INFO]
+
+[INFO] --- spring-boot:3.5.6:repackage (repackage) @ eureka-server ---
+
+[INFO] Replacing main artifact <workspace>\eureka-server\target\validation\eureka-server-1.0.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+
+[INFO] The original artifact has been renamed to <workspace>\eureka-server\target\validation\eureka-server-1.0.0-SNAPSHOT.jar.original
+
+[INFO]
+
+[INFO] -------------------< com.biblioshare:config-server >--------------------
+
+[INFO] Building config-server 1.0.0-SNAPSHOT                              [5/8]
+
+[INFO]   from config-server\pom.xml
+
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO]
+
+[INFO] --- resources:3.3.1:resources (default-resources) @ config-server ---
+
+[INFO] Copying 1 resource from src\main\resources to target\validation\classes
+
+[INFO] Copying 0 resource from src\main\resources to target\validation\classes
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:compile (default-compile) @ config-server ---
+
+[INFO] Recompiling the module because of changed source code.
+
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target\validation\classes
+
+[INFO]
+
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ config-server ---
+
+[INFO] skip non existing resourceDirectory <workspace>\config-server\src\test\resources
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ config-server ---
+
+[INFO] No sources to compile
+
+[INFO]
+
+[INFO] --- surefire:3.5.4:test (default-test) @ config-server ---
+
+[INFO] No tests to run.
+
+[INFO]
+
+[INFO] --- jar:3.4.2:jar (default-jar) @ config-server ---
+
+[INFO] Building jar: <workspace>\config-server\target\validation\config-server-1.0.0-SNAPSHOT.jar
+
+[INFO]
+
+[INFO] --- spring-boot:3.5.6:repackage (repackage) @ config-server ---
+
+[INFO] Replacing main artifact <workspace>\config-server\target\validation\config-server-1.0.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+
+[INFO] The original artifact has been renamed to <workspace>\config-server\target\validation\config-server-1.0.0-SNAPSHOT.jar.original
+
+[INFO]
+
+[INFO] ------------------< com.biblioshare:gateway-service >-------------------
+
+[INFO] Building gateway-service 1.0.0-SNAPSHOT                            [6/8]
+
+[INFO]   from gateway-service\pom.xml
+
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO]
+
+[INFO] --- resources:3.3.1:resources (default-resources) @ gateway-service ---
+
+[INFO] Copying 1 resource from src\main\resources to target\validation\classes
+
+[INFO] Copying 0 resource from src\main\resources to target\validation\classes
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:compile (default-compile) @ gateway-service ---
+
+[INFO] Recompiling the module because of changed source code.
+
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target\validation\classes
+
+[INFO]
+
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ gateway-service ---
+
+[INFO] skip non existing resourceDirectory <workspace>\gateway-service\src\test\resources
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ gateway-service ---
+
+[INFO] No sources to compile
+
+[INFO]
+
+[INFO] --- surefire:3.5.4:test (default-test) @ gateway-service ---
+
+[INFO] No tests to run.
+
+[INFO]
+
+[INFO] --- jar:3.4.2:jar (default-jar) @ gateway-service ---
+
+[INFO] Building jar: <workspace>\gateway-service\target\validation\gateway-service-1.0.0-SNAPSHOT.jar
+
+[INFO]
+
+[INFO] --- spring-boot:3.5.6:repackage (repackage) @ gateway-service ---
+
+[INFO] Replacing main artifact <workspace>\gateway-service\target\validation\gateway-service-1.0.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+
+[INFO] The original artifact has been renamed to <workspace>\gateway-service\target\validation\gateway-service-1.0.0-SNAPSHOT.jar.original
+
+[INFO]
+
+[INFO] --------------------< com.biblioshare:service-pret >--------------------
+
+[INFO] Building service-pret 1.0.0-SNAPSHOT                               [7/8]
+
+[INFO]   from service-pret\pom.xml
+
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO]
+
+[INFO] --- resources:3.3.1:resources (default-resources) @ service-pret ---
+
+[INFO] Copying 1 resource from src\main\resources to target\validation\classes
+
+[INFO] Copying 0 resource from src\main\resources to target\validation\classes
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:compile (default-compile) @ service-pret ---
+
+[INFO] Recompiling the module because of changed source code.
+
+[INFO] Compiling 16 source files with javac [debug parameters release 17] to target\validation\classes
+
+[INFO]
+
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ service-pret ---
+
+[INFO] Copying 1 resource from src\test\resources to target\validation\test-classes
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ service-pret ---
+
+[INFO] Recompiling the module because of changed dependency.
+
+[INFO] Compiling 1 source file with javac [debug parameters release 17] to target\validation\test-classes
+
+[INFO]
+
+[INFO] --- surefire:3.5.4:test (default-test) @ service-pret ---
+
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+
+[INFO]
+
+[INFO] -------------------------------------------------------
+
+[INFO]  T E S T S
+
+[INFO] -------------------------------------------------------
+
+[INFO] Running com.biblioshare.pret.LoanFlowTests
+
+11:12:13.885 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.biblioshare.pret.LoanFlowTests]: LoanFlowTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+
+11:12:14.456 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.biblioshare.pret.PretApplication for test class com.biblioshare.pret.LoanFlowTests
+
+
+
+  .   ____          _            __ _ _
+
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+
+ =========|_|==============|___/=/_/_/_/
+
+
+
+ :: Spring Boot ::                (v3.5.6)
+
+
+
+2026-11-23T11:12:17.386+01:00  INFO 33320 --- [           main] com.biblioshare.pret.LoanFlowTests       : Starting LoanFlowTests using Java 17.0.20.1 with PID 33320 (started by imane_e2dsnr5 in <workspace>\service-pret)
+
+2026-11-23T11:12:17.396+01:00  INFO 33320 --- [           main] com.biblioshare.pret.LoanFlowTests       : No active profile set, falling back to 1 default profile: "default"
+
+2026-11-23T11:12:23.383+01:00  INFO 33320 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+
+2026-11-23T11:12:24.175+01:00  INFO 33320 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 740 ms. Found 2 JPA repository interfaces.
+
+2026-11-23T11:12:26.280+01:00  INFO 33320 --- [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=c97f5825-29d6-3140-868c-024b83414138
+
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has
+
+been appended
+
+2026-11-23T11:12:34.570+01:00  INFO 33320 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+
+2026-11-23T11:12:35.215+01:00  INFO 33320 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:8cbf470a-4ea9-4e9a-a1ac-95d5f28ddc0f user=SA
+
+2026-11-23T11:12:35.221+01:00  INFO 33320 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+
+2026-11-23T11:12:35.357+01:00  INFO 33320 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+
+2026-11-23T11:12:35.586+01:00  INFO 33320 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.29.Final
+
+2026-11-23T11:12:35.722+01:00  INFO 33320 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+
+2026-11-23T11:12:36.132+01:00  INFO 33320 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+
+2026-11-23T11:12:36.458+01:00  INFO 33320 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+
+	Database driver: undefined/unknown
+
+	Database version: 2.3.232
+
+	Autocommit mode: undefined/unknown
+
+	Isolation level: undefined/unknown
+
+	Minimum pool size: undefined/unknown
+
+	Maximum pool size: undefined/unknown
+
+2026-11-23T11:12:39.226+01:00  INFO 33320 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+
+2026-11-23T11:12:39.335+01:00  INFO 33320 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+
+2026-11-23T11:12:41.450+01:00  INFO 33320 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+
+2026-11-23T11:12:48.885+01:00  INFO 33320 --- [           main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+
+2026-11-23T11:12:49.111+01:00  WARN 33320 --- [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+
+2026-11-23T11:12:49.197+01:00  INFO 33320 --- [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+
+2026-11-23T11:12:49.392+01:00  INFO 33320 --- [           main] com.biblioshare.pret.LoanFlowTests       : Started LoanFlowTests in 33.871 seconds (process running for 38.026)
+
+2026-11-23T11:12:50.573+01:00  INFO 33320 --- [           main] c.b.p.n.NotificationPublisher            : Notification RETARD reference 1 envoyee a RabbitMQ
+
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 37.15 s -- in com.biblioshare.pret.LoanFlowTests
+
+[INFO]
+
+[INFO] Results:
+
+[INFO]
+
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO]
+
+[INFO]
+
+[INFO] --- jar:3.4.2:jar (default-jar) @ service-pret ---
+
+[INFO] Building jar: <workspace>\service-pret\target\validation\service-pret-1.0.0-SNAPSHOT.jar
+
+[INFO]
+
+[INFO] --- spring-boot:3.5.6:repackage (repackage) @ service-pret ---
+
+[INFO] Replacing main artifact <workspace>\service-pret\target\validation\service-pret-1.0.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+
+[INFO] The original artifact has been renamed to <workspace>\service-pret\target\validation\service-pret-1.0.0-SNAPSHOT.jar.original
+
+[INFO]
+
+[INFO] ----------------< com.biblioshare:service-notification >----------------
+
+[INFO] Building service-notification 1.0.0-SNAPSHOT                       [8/8]
+
+[INFO]   from service-notification\pom.xml
+
+[INFO] --------------------------------[ jar ]---------------------------------
+
+[INFO]
+
+[INFO] --- resources:3.3.1:resources (default-resources) @ service-notification ---
+
+[INFO] Copying 1 resource from src\main\resources to target\validation\classes
+
+[INFO] Copying 0 resource from src\main\resources to target\validation\classes
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:compile (default-compile) @ service-notification ---
+
+[INFO] Recompiling the module because of changed source code.
+
+[INFO] Compiling 2 source files with javac [debug parameters release 17] to target\validation\classes
+
+[INFO]
+
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ service-notification ---
+
+[INFO] skip non existing resourceDirectory <workspace>\service-notification\src\test\resources
+
+[INFO]
+
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ service-notification ---
+
+[INFO] No sources to compile
+
+[INFO]
+
+[INFO] --- surefire:3.5.4:test (default-test) @ service-notification ---
+
+[INFO] No tests to run.
+
+[INFO]
+
+[INFO] --- jar:3.4.2:jar (default-jar) @ service-notification ---
+
+[INFO] Building jar: <workspace>\service-notification\target\validation\service-notification-1.0.0-SNAPSHOT.jar
+
+[INFO]
+
+[INFO] --- spring-boot:3.5.6:repackage (repackage) @ service-notification ---
+
+[INFO] Replacing main artifact <workspace>\service-notification\target\validation\service-notification-1.0.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+
+[INFO] The original artifact has been renamed to <workspace>\service-notification\target\validation\service-notification-1.0.0-SNAPSHOT.jar.original
+
+[INFO] ------------------------------------------------------------------------
+
+[INFO] Reactor Summary:
+
+[INFO]
+
+[INFO] Biblio-Share 1.0.0-SNAPSHOT ........................ SUCCESS [  0.005 s]
+
+[INFO] service-catalogue 0.0.1-SNAPSHOT ................... SUCCESS [ 49.496 s]
+
+[INFO] service-adherents 1.0.0-SNAPSHOT ................... SUCCESS [ 47.736 s]
+
+[INFO] eureka-server 1.0.0-SNAPSHOT ....................... SUCCESS [  4.531 s]
+
+[INFO] config-server 1.0.0-SNAPSHOT ....................... SUCCESS [  1.143 s]
+
+[INFO] gateway-service 1.0.0-SNAPSHOT ..................... SUCCESS [  1.185 s]
+
+[INFO] service-pret 1.0.0-SNAPSHOT ........................ SUCCESS [ 48.801 s]
+
+[INFO] service-notification 1.0.0-SNAPSHOT ................ SUCCESS [  1.115 s]
+
+[INFO] ------------------------------------------------------------------------
+
+[INFO] BUILD SUCCESS
+
+[INFO] ------------------------------------------------------------------------
+
+[INFO] Total time:  02:34 min
+
+[INFO] Finished at: 2026-11-23T11:12:53+01:00
+
+[INFO] ------------------------------------------------------------------------

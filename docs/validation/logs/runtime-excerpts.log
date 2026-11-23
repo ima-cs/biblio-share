@@ -1,0 +1,154 @@
+config-server
+2026-11-23T11:04:30.167+01:00  INFO 18708 --- [config-server] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CONFIG-SERVER/MSI:config-server:8888: registering service...
+2026-11-23T11:04:30.203+01:00  INFO 18708 --- [config-server] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2026-11-23T11:04:30.436+01:00  INFO 18708 --- [config-server] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CONFIG-SERVER/MSI:config-server:8888 - registration status: 204
+2026-11-23T11:22:51.293+01:00  INFO 11496 --- [config-server] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CONFIG-SERVER/MSI:config-server:8888: registering service...
+2026-11-23T11:22:51.332+01:00  INFO 11496 --- [config-server] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8888 (http) with context path '/'
+2026-11-23T11:22:51.595+01:00  INFO 11496 --- [config-server] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_CONFIG-SERVER/MSI:config-server:8888 - registration status: 204
+
+eureka-server
+2026-11-23T11:04:20.455+01:00  INFO 34332 --- [eureka-server] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8761 (http) with context path '/'
+2026-11-23T11:22:42.520+01:00  INFO 31576 --- [eureka-server] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8761 (http) with context path '/'
+
+gateway-service
+2026-11-23T11:05:24.180+01:00  INFO 1244 --- [gateway-service] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=gateway-service, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:05:30.973+01:00  INFO 1244 --- [gateway-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/MSI:gateway-service:8080: registering service...
+2026-11-23T11:05:31.057+01:00  INFO 1244 --- [gateway-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/MSI:gateway-service:8080 - registration status: 204
+2026-11-23T11:05:31.297+01:00  INFO 1244 --- [gateway-service] [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+2026-11-23T11:23:30.840+01:00  INFO 18960 --- [gateway-service] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=gateway-service, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:23:38.378+01:00  INFO 18960 --- [gateway-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/MSI:gateway-service:8080: registering service...
+2026-11-23T11:23:38.461+01:00  INFO 18960 --- [gateway-service] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_GATEWAY-SERVICE/MSI:gateway-service:8080 - registration status: 204
+2026-11-23T11:23:39.079+01:00  INFO 18960 --- [gateway-service] [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port 8080 (http)
+
+service-adherents
+2026-11-23T11:05:45.772+01:00  INFO 31712 --- [service-adherents] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-adherents, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:05:58.978+01:00  INFO 31712 --- [service-adherents] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:<workspace>/target/audit/adherentsdb'
+2026-11-23T11:06:01.501+01:00  INFO 31712 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082: registering service...
+2026-11-23T11:06:01.619+01:00  INFO 31712 --- [service-adherents] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2026-11-23T11:06:01.702+01:00  INFO 31712 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082 - registration status: 204
+2026-11-23T11:07:28.063+01:00  INFO 31712 --- [service-adherents] [nio-8082-exec-5] c.b.a.n.NotificationPublisher            : Notification DISPONIBILITE reference 1 envoyee a RabbitMQ
+2026-11-23T11:10:25.251+01:00  INFO 31712 --- [service-adherents] [nio-8082-exec-6] c.b.a.n.NotificationPublisher            : Notification DISPONIBILITE reference 3 envoyee a RabbitMQ
+2026-11-23T11:12:18.725+01:00  INFO 18080 --- [service-adherents] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-adherents, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:12:41.588+01:00  INFO 18080 --- [service-adherents] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:<workspace>/target/audit/adherentsdb'
+2026-11-23T11:12:43.118+01:00  INFO 18080 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082: registering service...
+2026-11-23T11:12:43.173+01:00  INFO 18080 --- [service-adherents] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2026-11-23T11:12:43.238+01:00  INFO 18080 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082 - registration status: 204
+2026-11-23T11:18:21.141+01:00  INFO 32748 --- [service-adherents] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-adherents, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:18:33.105+01:00  INFO 32748 --- [service-adherents] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:<workspace>/target/audit/adherentsdb'
+2026-11-23T11:18:34.188+01:00  INFO 32748 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082: registering service...
+2026-11-23T11:18:34.238+01:00  INFO 32748 --- [service-adherents] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2026-11-23T11:18:34.311+01:00  INFO 32748 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082 - registration status: 204
+2026-11-23T11:20:15.278+01:00  INFO 32748 --- [service-adherents] [nio-8082-exec-5] c.b.a.n.NotificationPublisher            : Notification DISPONIBILITE reference 65 envoyee a RabbitMQ
+2026-11-23T11:21:29.803+01:00  INFO 5400 --- [service-adherents] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-adherents, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:21:38.863+01:00  INFO 5400 --- [service-adherents] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:<workspace>/target/audit/adherentsdb'
+2026-11-23T11:21:39.929+01:00  INFO 5400 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082: registering service...
+2026-11-23T11:21:39.985+01:00  INFO 5400 --- [service-adherents] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2026-11-23T11:21:40.017+01:00  INFO 5400 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082 - registration status: 204
+2026-11-23T11:21:40.783+01:00 ERROR 5400 --- [service-adherents] [nio-8082-exec-2] c.b.a.n.NotificationPublisher            : Notification DISPONIBILITE pour la reference 67 non publiee apres commit
+2026-11-23T11:21:44.011+01:00  INFO 11084 --- [service-adherents] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-adherents, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:21:52.663+01:00  INFO 11084 --- [service-adherents] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:<workspace>/target/audit/adherentsdb'
+2026-11-23T11:21:53.458+01:00  INFO 11084 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082: registering service...
+2026-11-23T11:21:53.500+01:00  INFO 11084 --- [service-adherents] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2026-11-23T11:21:53.547+01:00  INFO 11084 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082 - registration status: 204
+2026-11-23T11:22:03.702+01:00  INFO 11084 --- [service-adherents] [nio-8082-exec-5] c.b.a.n.NotificationPublisher            : Notification DISPONIBILITE reference 68 envoyee a RabbitMQ
+2026-11-23T11:22:15.126+01:00  INFO 11084 --- [service-adherents] [nio-8082-exec-9] c.b.a.n.NotificationPublisher            : Notification DISPONIBILITE reference 69 envoyee a RabbitMQ
+2026-11-23T11:22:58.185+01:00  INFO 24744 --- [service-adherents] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-adherents, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:23:07.694+01:00  INFO 24744 --- [service-adherents] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:adherentsdb user=SA
+2026-11-23T11:23:18.643+01:00  INFO 24744 --- [service-adherents] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:adherentsdb'
+2026-11-23T11:23:20.647+01:00  INFO 24744 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082: registering service...
+2026-11-23T11:23:20.708+01:00  INFO 24744 --- [service-adherents] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2026-11-23T11:23:20.765+01:00  INFO 24744 --- [service-adherents] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-ADHERENTS/MSI:service-adherents:8082 - registration status: 204
+2026-11-23T11:24:22.996+01:00  INFO 24744 --- [service-adherents] [nio-8082-exec-6] c.b.a.n.NotificationPublisher            : Notification DISPONIBILITE reference 1 envoyee a RabbitMQ
+
+service-catalogue
+2026-11-23T11:05:35.785+01:00  INFO 19624 --- [service-catalogue] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-catalogue, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:05:45.070+01:00  INFO 19624 --- [service-catalogue] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:<workspace>/target/audit/cataloguedb'
+2026-11-23T11:05:46.272+01:00  INFO 19624 --- [service-catalogue] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-CATALOGUE/MSI:service-catalogue:8181: registering service...
+2026-11-23T11:05:46.313+01:00  INFO 19624 --- [service-catalogue] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8181 (http) with context path '/'
+2026-11-23T11:05:46.351+01:00  INFO 19624 --- [service-catalogue] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-CATALOGUE/MSI:service-catalogue:8181 - registration status: 204
+2026-11-23T11:14:55.537+01:00  INFO 33952 --- [service-catalogue] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-catalogue, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:15:05.845+01:00  INFO 33952 --- [service-catalogue] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:<workspace>/target/audit/cataloguedb'
+2026-11-23T11:15:06.780+01:00  INFO 33952 --- [service-catalogue] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-CATALOGUE/MSI:service-catalogue:8181: registering service...
+2026-11-23T11:15:06.870+01:00  INFO 33952 --- [service-catalogue] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8181 (http) with context path '/'
+2026-11-23T11:15:06.910+01:00  INFO 33952 --- [service-catalogue] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-CATALOGUE/MSI:service-catalogue:8181 - registration status: 204
+2026-11-23T11:18:46.802+01:00  INFO 28956 --- [service-catalogue] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-catalogue, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:19:12.777+01:00  INFO 28956 --- [service-catalogue] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:<workspace>/target/audit/cataloguedb'
+2026-11-23T11:19:15.596+01:00  INFO 28956 --- [service-catalogue] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-CATALOGUE/MSI:service-catalogue:8181: registering service...
+2026-11-23T11:19:15.699+01:00  INFO 28956 --- [service-catalogue] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8181 (http) with context path '/'
+2026-11-23T11:19:15.787+01:00  INFO 28956 --- [service-catalogue] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-CATALOGUE/MSI:service-catalogue:8181 - registration status: 204
+2026-11-23T11:22:58.785+01:00  INFO 17824 --- [service-catalogue] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-catalogue, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:23:09.539+01:00  INFO 17824 --- [service-catalogue] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:cataloguedb user=SA
+2026-11-23T11:23:20.557+01:00  INFO 17824 --- [service-catalogue] [           main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:cataloguedb'
+2026-11-23T11:23:22.643+01:00  INFO 17824 --- [service-catalogue] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-CATALOGUE/MSI:service-catalogue:8181: registering service...
+2026-11-23T11:23:22.704+01:00  INFO 17824 --- [service-catalogue] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8181 (http) with context path '/'
+2026-11-23T11:23:22.751+01:00  INFO 17824 --- [service-catalogue] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-CATALOGUE/MSI:service-catalogue:8181 - registration status: 204
+
+service-notification
+2026-11-23T11:06:45.773+01:00  INFO 4996 --- [service-notification] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-notification, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:06:50.781+01:00  INFO 4996 --- [service-notification] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-NOTIFICATION/MSI:service-notification:8084: registering service...
+2026-11-23T11:06:50.831+01:00  INFO 4996 --- [service-notification] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/'
+2026-11-23T11:06:50.865+01:00  INFO 4996 --- [service-notification] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-NOTIFICATION/MSI:service-notification:8084 - registration status: 204
+2026-11-23T11:07:29.330+01:00  INFO 4996 --- [service-notification] [ntContainer#0-1] c.b.notification.EmailConsumer           : Notification DISPONIBILITE reference 1 remise au serveur SMTP
+2026-11-23T11:10:25.586+01:00  INFO 4996 --- [service-notification] [ntContainer#0-1] c.b.notification.EmailConsumer           : Notification DISPONIBILITE reference 3 remise au serveur SMTP
+2026-11-23T11:20:50.394+01:00  INFO 28492 --- [service-notification] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-notification, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:20:54.932+01:00  INFO 28492 --- [service-notification] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-NOTIFICATION/MSI:service-notification:8084: registering service...
+2026-11-23T11:20:54.970+01:00  INFO 28492 --- [service-notification] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/'
+2026-11-23T11:20:54.997+01:00  INFO 28492 --- [service-notification] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-NOTIFICATION/MSI:service-notification:8084 - registration status: 204
+2026-11-23T11:20:55.783+01:00  INFO 28492 --- [service-notification] [ntContainer#0-1] c.b.notification.EmailConsumer           : Notification DISPONIBILITE reference 65 remise au serveur SMTP
+2026-11-23T11:20:55.810+01:00  INFO 28492 --- [service-notification] [ntContainer#0-1] c.b.notification.EmailConsumer           : Notification RETARD reference 66 remise au serveur SMTP
+2026-11-23T11:21:58.475+01:00  INFO 29472 --- [service-notification] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-notification, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:22:02.880+01:00  INFO 29472 --- [service-notification] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-NOTIFICATION/MSI:service-notification:8084: registering service...
+2026-11-23T11:22:02.919+01:00  INFO 29472 --- [service-notification] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/'
+2026-11-23T11:22:02.932+01:00  INFO 29472 --- [service-notification] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-NOTIFICATION/MSI:service-notification:8084 - registration status: 204
+Caused by: org.springframework.mail.MailSendException: Mail server connection failed. Failed messages: org.eclipse.angus.mail.util.MailConnectException: Couldn't connect to host, port: localhost, 11025; timeout 5000;
+Caused by: org.springframework.mail.MailSendException: Mail server connection failed. Failed messages: org.eclipse.angus.mail.util.MailConnectException: Couldn't connect to host, port: localhost, 11025; timeout 5000;
+2026-11-23T11:22:09.102+01:00  INFO 21328 --- [service-notification] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-notification, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:22:13.858+01:00  INFO 21328 --- [service-notification] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-NOTIFICATION/MSI:service-notification:8084: registering service...
+2026-11-23T11:22:13.889+01:00  INFO 21328 --- [service-notification] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/'
+2026-11-23T11:22:13.920+01:00  INFO 21328 --- [service-notification] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-NOTIFICATION/MSI:service-notification:8084 - registration status: 204
+2026-11-23T11:22:15.255+01:00  INFO 21328 --- [service-notification] [ntContainer#0-1] c.b.notification.EmailConsumer           : Notification DISPONIBILITE reference 69 remise au serveur SMTP
+2026-11-23T11:22:57.053+01:00  INFO 18280 --- [service-notification] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-notification, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:23:07.603+01:00  INFO 18280 --- [service-notification] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-NOTIFICATION/MSI:service-notification:8084: registering service...
+2026-11-23T11:23:07.703+01:00  INFO 18280 --- [service-notification] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8084 (http) with context path '/'
+2026-11-23T11:23:07.789+01:00  INFO 18280 --- [service-notification] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-NOTIFICATION/MSI:service-notification:8084 - registration status: 204
+2026-11-23T11:24:23.408+01:00  INFO 18280 --- [service-notification] [ntContainer#0-1] c.b.notification.EmailConsumer           : Notification DISPONIBILITE reference 1 remise au serveur SMTP
+
+service-pret
+2026-11-23T11:06:53.004+01:00  INFO 12444 --- [service-pret] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-pret, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:07:07.945+01:00  INFO 12444 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083: registering service...
+2026-11-23T11:07:07.985+01:00  INFO 12444 --- [service-pret] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-11-23T11:07:08.016+01:00  INFO 12444 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083 - registration status: 204
+2026-11-23T11:12:58.937+01:00  INFO 18440 --- [service-pret] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-pret, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:13:14.306+01:00  INFO 18440 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083: registering service...
+2026-11-23T11:13:14.347+01:00  INFO 18440 --- [service-pret] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-11-23T11:13:14.382+01:00  INFO 18440 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083 - registration status: 204
+2026-11-23T11:13:29.375+01:00  INFO 8848 --- [service-pret] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-pret, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:14:18.545+01:00  INFO 8848 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083: registering service...
+2026-11-23T11:14:18.627+01:00  INFO 8848 --- [service-pret] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-11-23T11:14:18.715+01:00  INFO 8848 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083 - registration status: 204
+2026-11-23T11:19:22.127+01:00  INFO 26496 --- [service-pret] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-pret, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:19:36.605+01:00  INFO 26496 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083: registering service...
+2026-11-23T11:19:36.656+01:00  INFO 26496 --- [service-pret] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-11-23T11:19:36.722+01:00  INFO 26496 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083 - registration status: 204
+2026-11-23T11:19:41.186+01:00  INFO 18656 --- [service-pret] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-pret, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:19:53.871+01:00  INFO 18656 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083: registering service...
+2026-11-23T11:19:53.912+01:00  INFO 18656 --- [service-pret] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-11-23T11:19:53.941+01:00  INFO 18656 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083 - registration status: 204
+2026-11-23T11:19:59.810+01:00  INFO 16752 --- [service-pret] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-pret, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:20:12.376+01:00  INFO 16752 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083: registering service...
+2026-11-23T11:20:12.422+01:00  INFO 16752 --- [service-pret] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-11-23T11:20:12.443+01:00  INFO 16752 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083 - registration status: 204
+2026-11-24T00:20:18.066+14:00  INFO 7064 --- [service-pret] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-pret, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-24T00:20:30.639+14:00  INFO 7064 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083: registering service...
+2026-11-24T00:20:30.662+14:00  INFO 7064 --- [service-pret] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-11-24T00:20:30.698+14:00  INFO 7064 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083 - registration status: 204
+2026-11-24T00:20:31.545+14:00  INFO 7064 --- [service-pret] [nio-8083-exec-2] c.b.p.n.NotificationPublisher            : Notification RETARD reference 66 envoyee a RabbitMQ
+2026-11-23T11:20:35.330+01:00  INFO 7264 --- [service-pret] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-pret, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:20:47.207+01:00  INFO 7264 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083: registering service...
+2026-11-23T11:20:47.252+01:00  INFO 7264 --- [service-pret] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-11-23T11:20:47.277+01:00  INFO 7264 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083 - registration status: 204
+2026-11-23T11:22:57.665+01:00  INFO 31500 --- [service-pret] [           main] o.s.c.c.c.ConfigServerConfigDataLoader   : Located environment: name=service-pret, profiles=[default], label=null, version=9f1917e077195d0ec73e795eaf306d2e2f0b5c60, state=
+2026-11-23T11:23:09.337+01:00  INFO 31500 --- [service-pret] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:pretdb user=SA
+2026-11-23T11:23:26.021+01:00  INFO 31500 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083: registering service...
+2026-11-23T11:23:26.073+01:00  INFO 31500 --- [service-pret] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8083 (http) with context path '/'
+2026-11-23T11:23:26.148+01:00  INFO 31500 --- [service-pret] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_SERVICE-PRET/MSI:service-pret:8083 - registration status: 204

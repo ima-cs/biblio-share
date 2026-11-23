@@ -6,6 +6,13 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.6</version>
+        <relativePath/>
+    </parent>
+
     <groupId>com.biblioshare</groupId>
     <artifactId>biblio-share</artifactId>
     <version>1.0.0-SNAPSHOT</version>
@@ -15,12 +22,36 @@
     <description>Application de gestion de bibliothèque en microservices</description>
 
     <properties>
-        <maven.compiler.release>17</maven.compiler.release>
+        <java.version>17</java.version>
+        <spring-cloud.version>2025.0.0</spring-cloud.version>
+        <biblio.build.directory>target</biblio.build.directory>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <directory>${project.basedir}/${biblio.build.directory}</directory>
+    </build>
+
     <modules>
         <module>service-catalogue</module>
+        <module>service-adherents</module>
+        <module>eureka-server</module>
+        <module>config-server</module>
+        <module>gateway-service</module>
+        <module>service-pret</module>
+        <module>service-notification</module>
     </modules>
 
 </project>

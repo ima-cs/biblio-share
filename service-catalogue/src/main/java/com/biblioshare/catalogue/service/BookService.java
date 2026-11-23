@@ -5,6 +5,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.biblioshare.catalogue.entity.Book;
 import com.biblioshare.catalogue.repository.BookRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.biblioshare.catalogue.repository.CopyRepository;
 
 import java.util.List;
 
@@ -13,8 +15,11 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
-    public BookService(BookRepository bookRepository) {
+    private final CopyRepository copies;
+
+    public BookService(BookRepository bookRepository, CopyRepository copies) {
         this.bookRepository = bookRepository;
+        this.copies = copies;
     }
 
     public List<Book> getAllBooks() {
@@ -43,8 +48,17 @@ public class BookService {
         return bookRepository.save(existingBook);
     }
 
+    Book lockBook(Long id) {
+        return bookRepository.lockById(id).orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Livre introuvable"));
+    }
+
+    @Transactional
     public void deleteBook(Long id) {
-        Book book = getBookById(id);
+        Book book = lockBook(id);
+        if (copies.existsByBookId(id)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Le livre contient des exemplaires");
+        }
         bookRepository.delete(book);
     }
 }

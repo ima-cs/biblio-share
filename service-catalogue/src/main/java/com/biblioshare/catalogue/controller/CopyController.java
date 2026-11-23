@@ -1,8 +1,9 @@
-
 package com.biblioshare.catalogue.controller;
 
 import com.biblioshare.catalogue.entity.Copy;
 import com.biblioshare.catalogue.service.CopyService;
+import com.biblioshare.catalogue.dto.CopyRequest;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,14 +31,14 @@ public class CopyController {
     }
 
     @PostMapping
-    public ResponseEntity<Copy> createCopy(@RequestBody Copy copy) {
-        Copy created = copyService.createCopy(copy);
+    public ResponseEntity<Copy> createCopy(@Valid @RequestBody CopyRequest copy) {
+        Copy created = copyService.createCopy(copy.toEntity());
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
     @PutMapping("/{id}")
-    public Copy updateCopy(@PathVariable Long id, @RequestBody Copy copy) {
-        return copyService.updateCopy(id, copy);
+    public Copy updateCopy(@PathVariable Long id, @Valid @RequestBody CopyRequest copy) {
+        return copyService.updateCopy(id, copy.toEntity());
     }
 
     @DeleteMapping("/{id}")
